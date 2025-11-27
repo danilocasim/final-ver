@@ -12,7 +12,9 @@
 <body>
 
   <body class="bg-gray-50 p-8">
-    <div class="call-container">
+    <%- include("partials/navbar") %>
+
+    <div class="call-container mt-5">
       <div class="main-panel">
         <div class="max-w-4xl mx-auto call-container">
           <!-- Header -->
@@ -21,7 +23,7 @@
               <h1 class="text-3xl font-bold text-gray-800 mb-3">Live Call</h1>
               <div class="flex items-center gap-3">
                 <div class="status">
-                  <span class="inline-flex items-center gap-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <span class="inline-flex items-center mb-3 gap-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                     <span class="w-2 h-2 bg-white rounded-full"></span>
                     <div class="status-dot" id="statusDot"></div>
                     <span id="callStatus">Connecting to Agora...</span>
@@ -39,14 +41,13 @@
                   </svg>
                 </div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">AI Legal Assistant</h2>
-                <div class="transcript-box" id="transcript">
-                  <p style="opacity: 0.6; text-align: center" class="mb-3"> Initializing voice call... </p>
-                </div>
+             
                 <div class="listening-indicator" id="listeningIndicator">
                   <div class="voice-wave">
                     <span></span><span></span><span></span><span></span><span></span>
                   </div>
                   <p>Listening to you...</p>
+                  <br>
                 </div>
                 <div class="flex flex-row items-center controls">
                   <button class="control-btn mic-btn muted bg-yellow-500 mr-5 hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors" id="micBtn" onclick="toggleMic()" disabled>
@@ -65,14 +66,15 @@
               <h3 class="text-xl font-bold text-gray-800 mb-1">Live Transcript</h3>
               <p class="text-gray-500 text-sm mb-6">Real-time conversation</p>
               <div class="space-y-4">
-                  mewo diko magawa
-              </div>
+              <div class="transcript-box" id="transcript">
+                  <p style="opacity: 0.6; text-align: center" class="mb-3"> Initializing voice call... </p>
+                </div>              </div>
             </div>
             <div class="sidebar">
               <h3>📋 Action Steps</h3>
               <ul class="steps-list" id="stepsList">
                 <li class="step-item">
-                  <input type="checkbox" class="step-checkbox" /> Connecting to voice service...
+                  <input type="checkbox" class="step-checkbox" /> Connecting to voice service...  
                 </li>
               </ul>
               <h3 style="margin-top: 2rem">📞 Important Contacts</h3>

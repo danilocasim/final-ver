@@ -221,5 +221,120 @@
     "nextAction": "Contact the Public Attorney's Office (PAO) to seek legal advice and assistance regarding the eviction",
     "totalTranscripts": 30,
     "createdAt": 1764220033113
+  },
+  {
+    "sessionId": "093c63ab-51b2-49d4-a413-00becd3ed805",
+    "situation": "The user has reached out for assistance but has not provided specific details about their situation with their landlord.",
+    "relevantLaws": [
+      "The Rent Control Act of 2009 (Republic Act No. 9653)",
+      "The Civil Code of the Philippines (Republic Act No. 386)",
+      "The Residential Rent Law (Batas Pambansa Bilang 877)"
+    ],
+    "recommendedSteps": [
+      "Gather all relevant documents related to the tenancy, including the lease agreement and any communication with the landlord",
+      "Contact the landlord to try to resolve the issue amicably",
+      "Seek assistance from the barangay or local government unit",
+      "Consider consulting with a lawyer or the Public Attorney's Office (PAO) for legal advice"
+    ],
+    "watchOutFor": [
+      "Any threats or intimidation from the landlord",
+      "Unauthorized changes to the lease agreement or rent",
+      "Deadline for filing complaints or taking legal action",
+      "Signs of retaliation from the landlord"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Contact the landlord to try to resolve the issue amicably and gather all relevant documents related to the tenancy",
+    "totalTranscripts": 2,
+    "createdAt": 1764240698905
+  },
+  {
+    "sessionId": "093c63ab-51b2-49d4-a413-00becd3ed805",
+    "situation": "The user greeted multiple times but did not disclose any specific situation or problem related to their landlord.",
+    "relevantLaws": [
+      "The Rent Control Act of 2009 (Republic Act No. 9653)",
+      "The Civil Code of the Philippines (Republic Act No. 386)",
+      "The Residential Rent Control Act of 1991 (Batasan Pambansa Blg. 8731)"
+    ],
+    "recommendedSteps": [
+      "Gather all relevant documents and records related to the rental agreement and any disputes",
+      "Contact the landlord to discuss the issue and attempt to resolve it amicably",
+      "Seek assistance from the local barangay or the Department of Social Welfare and Development (DSWD) if necessary",
+      "Consult with a lawyer or the Public Attorney's Office (PAO) for legal advice"
+    ],
+    "watchOutFor": [
+      "Any signs of intimidation or harassment from the landlord",
+      "Unlawful eviction or threats of eviction",
+      "Unauthorized changes to the rental agreement or lease",
+      "Deadlines for filing complaints or taking legal action"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Contact the local barangay or the Public Attorney's Office (PAO) to seek guidance on the next steps to take",
+    "totalTranscripts": 2,
+    "createdAt": 1764240727843
+  },
+  {
+    "sessionId": "b16cd1f3-0d48-4396-aefd-512fdc7d7ac9",
+    "situation": "The user greeted the AI assistant but did not specify any particular situation or problem in their barangay.",
+    "relevantLaws": [
+      "The Local Government Code of 1991 (Republic Act No. 7160)",
+      "The Barangay Justice System (Presidential Decree No. 1508)"
+    ],
+    "recommendedSteps": [
+      "Clarify the issue or problem the user is experiencing in their barangay",
+      "Visit the local barangay hall to report the issue and seek assistance",
+      "Gather evidence or supporting documents related to the issue"
+    ],
+    "watchOutFor": [
+      "Lack of cooperation from barangay officials",
+      "Potential escalation of the issue into a larger conflict",
+      "Deadlines for filing complaints or reports"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Contact the local barangay hall to report the issue and seek assistance",
+    "totalTranscripts": 2,
+    "createdAt": 1764241395386
+  },
+  {
+    "sessionId": "8e2fd637-cb74-42bf-a57f-9c7358c30e55",
+    "situation": "Employee experiencing inconsistent overtime pay",
+    "relevantLaws": [
+      "Labor Code of the Philippines",
+      "Department of Labor and Employment (DOLE) Handbook on Worker's Statutory Monetary Benefits",
+      "Republic Act No. 8042 (Migrant Workers and Overseas Filipinos Act of 1995)"
+    ],
+    "recommendedSteps": [
+      "Review employment contract and company policies on overtime pay",
+      "Keep a record of worked hours and overtime pay received",
+      "File a complaint with the Department of Labor and Employment (DOLE) or the National Labor Relations Commission (NLRC)"
+    ],
+    "contacts": {
+      "DOLE": "https://www.dole.gov.ph/",
+      "NLRC": "https://www.nlrc.gov.ph/",
+      "Labor Secretary": "(02) 527-3000"
+    },
+    "nextAction": "Review employment contract and company policies on overtime pay to understand the basis for the inconsistent pay",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764241828575
   }
 ]

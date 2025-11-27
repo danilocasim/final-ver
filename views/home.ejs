@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
   </head>
 
-  <body class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
+  <body
+    class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))]"
+  >
     <!-- Navbar -->
     <%- include("partials/navbar") %>
 
     <!-- CENTER WRAPPER -->
-    <div class="mx-auto ">
+    <div class="mx-auto">
       <!-- Hero Section -->
       <section class="relative overflow-hidden">
         <div
@@ -39,7 +41,9 @@
               >
             </h1>
 
-            <p class="mb-10 text-lg text-[hsl(var(--muted-foreground))] sm:text-xl">
+            <p
+              class="mb-10 text-lg text-[hsl(var(--muted-foreground))] sm:text-xl"
+            >
               Get instant legal help through voice-assisted AI. Speak your
               problem, understand your rights, and take action.
             </p>
@@ -72,7 +76,9 @@
             class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-[hsl(var(--card))] border rounded-xl p-6"
             onclick="window.location='/call'"
           >
-            <div class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--primary))]">
+            <div
+              class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--primary))]"
+            >
               <i data-lucide="home" class="h-8 w-8"></i>
             </div>
             <h3 class="text-xl font-semibold">Tenant Issues</h3>
@@ -86,7 +92,9 @@
             class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-[hsl(var(--card))] border rounded-xl p-6"
             onclick="window.location='/call'"
           >
-            <div class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--accent))]">
+            <div
+              class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--accent))]"
+            >
               <i data-lucide="briefcase" class="h-8 w-8"></i>
             </div>
             <h3 class="text-xl font-semibold">Workplace Issues</h3>
@@ -100,7 +108,9 @@
             class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-[hsl(var(--card))] border rounded-xl p-6"
             onclick="window.location='/call'"
           >
-            <div class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--success))]">
+            <div
+              class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--success))]"
+            >
               <i data-lucide="users" class="h-8 w-8"></i>
             </div>
             <h3 class="text-xl font-semibold">Barangay Issues</h3>
@@ -172,7 +182,9 @@
 
     <!-- Footer -->
     <footer class="border-t py-12">
-      <div class="container text-center text-sm text-[hsl(var(--muted-foreground))]">
+      <div
+        class="container text-center text-sm text-[hsl(var(--muted-foreground))]"
+      >
         <p>
           © 2025 AI Filipino Legal Buddy. Empowering Filipinos with accessible
           legal information.
