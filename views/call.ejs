@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voice Legal Consultation</title>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.21.0.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #1a1a2e;
+        color: white;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .call-container {
+        display: flex;
+        height: 100vh;
+      }
+      .main-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .status-dot {
+        width: 12px;
+        height: 12px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      .status-dot.listening {
+        background: #fbbf24;
+      }
+      .status-dot.speaking {
+        background: #3b82f6;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .category-badge {
+        background: #667eea;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+      .transcript-box {
+        flex: 1;
+        background: #16213e;
+        border-radius: 15px;
+        padding: 1.5rem;
+        overflow-y: auto;
+        margin-bottom: 2rem;
+      }
+      .transcript-item {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        animation: fadeIn 0.3s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .transcript-item.user {
+        background: #0f3460;
+        margin-left: 2rem;
+      }
+      .transcript-item.ai {
+        background: #1a4d2e;
+        margin-right: 2rem;
+      }
+      .speaker-label {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        font-size: 0.85rem;
+        opacity: 0.8;
+      }
+      .controls {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+      .control-btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .mic-btn {
+        background: #4ade80;
+        color: #1a1a2e;
+        position: relative;
+      }
+      .mic-btn.muted {
+        background: #ef4444;
+      }
+      .mic-btn.listening {
+        background: #fbbf24;
+        animation: micPulse 1s infinite;
+      }
+      .mic-btn.speaking {
+        background: #3b82f6;
+        cursor: not-allowed;
+      }
+      @keyframes micPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .end-btn {
+        background: #ef4444;
+        color: white;
+      }
+      .control-btn:hover:not(:disabled) {
+        transform: scale(1.05);
+      }
+      .control-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .sidebar {
+        width: 350px;
+        background: #16213e;
+        padding: 2rem;
+        overflow-y: auto;
+      }
+      .sidebar h3 {
+        margin-bottom: 1rem;
+        color: #667eea;
+      }
+      .steps-list {
+        list-style: none;
+      }
+      .step-item {
+        padding: 0.75rem;
+        background: #0f3460;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .step-item:hover {
+        background: #1a4d6f;
+      }
+      .step-item.completed {
+        opacity: 0.6;
+        text-decoration: line-through;
+      }
+      .step-checkbox {
+        margin-right: 0.5rem;
+      }
+      .voice-wave {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        margin: 1rem 0;
+      }
+      .voice-wave span {
+        width: 4px;
+        background: #667eea;
+        border-radius: 2px;
+        animation: wave 1s ease-in-out infinite;
+      }
+      .voice-wave span:nth-child(1) {
+        animation-delay: 0s;
+        height: 10px;
+      }
+      .voice-wave span:nth-child(2) {
+        animation-delay: 0.1s;
+        height: 20px;
+      }
+      .voice-wave span:nth-child(3) {
+        animation-delay: 0.2s;
+        height: 30px;
+      }
+      .voice-wave span:nth-child(4) {
+        animation-delay: 0.3s;
+        height: 20px;
+      }
+      .voice-wave span:nth-child(5) {
+        animation-delay: 0.4s;
+        height: 10px;
+      }
+      @keyframes wave {
+        0%,
+        100% {
+          height: 10px;
+        }
+        50% {
+          height: 30px;
+        }
+      }
+      .listening-indicator {
+        display: none;
+        text-align: center;
+        color: #fbbf24;
+        font-style: italic;
+        margin: 1rem 0;
+      }
+      .listening-indicator.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="call-container">
+      <div class="main-panel">
+        <div class="header">
+          <div class="status">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="callStatus">Connecting to Agora...</span>
+          </div>
+          <div class="category-badge"><%= session.category %></div>
+        </div>
+
+        <div class="transcript-box" id="transcript">
+          <p style="opacity: 0.6; text-align: center">
+            Initializing voice call...
+          </p>
+        </div>
+
+        <div class="listening-indicator" id="listeningIndicator">
+          <div class="voice-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <p>Listening to you...</p>
+        </div>
+
+        <div class="controls">
+          <button
+            class="control-btn mic-btn muted"
+            id="micBtn"
+            onclick="toggleMic()"
+            disabled
+          >
+            🔇 Microphone Off
+          </button>
+          <button class="control-btn end-btn" onclick="endCall()">
+            📞 End Call & Generate Report
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <h3>📋 Action Steps</h3>
+        <ul class="steps-list" id="stepsList">
+          <li class="step-item">
+            <input type="checkbox" class="step-checkbox" />
+            Connecting to voice service...
+          </li>
+        </ul>
+
+        <h3 style="margin-top: 2rem">📞 Important Contacts</h3>
+        <div id="contacts" style="font-size: 0.9rem; line-height: 1.6">
+          <p><strong>PAO:</strong> 929-9436</p>
+          <p><strong>DOLE:</strong> 1349</p>
+          <p><strong>Barangay:</strong> Local directory</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEBUG OVERLAY -->
+    <div
+      id="debugOverlay"
+      style="
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: lime;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 11px;
+        max-width: 300px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 9999;
+      "
+    >
+      <strong>🐛 DEBUG LOG:</strong>
+      <div id="debugLog"></div>
+    </div>
+
+    <script>
+      // ===== GLOBAL VARIABLES =====
+      const sessionId = "<%= session.sessionId %>";
+      const channelName = "legal-buddy-" + sessionId.substring(0, 8);
+
+      let rtcClient = null;
+      let localAudioTrack = null;
+      let isMuted = true;
+      let isAISpeaking = false;
+      let isRecognizing = false;
+      let conversationHistory = [];
+      let isProcessing = false;
+
+      const micBtn = document.getElementById("micBtn");
+      const statusDot = document.getElementById("statusDot");
+      const callStatus = document.getElementById("callStatus");
+      const listeningIndicator = document.getElementById("listeningIndicator");
+
+      // Speech Synthesis
+      const synth = window.speechSynthesis;
+
+      // ===== DEBUG LOGGER =====
+      const debugLog = document.getElementById("debugLog");
+      const originalConsoleLog = console.log;
+      const originalConsoleError = console.error;
+
+      function addDebugLine(type, ...args) {
+        const line = document.createElement("div");
+        line.style.color = type === "error" ? "#ff4444" : "lime";
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${args.join(
+          " "
+        )}`;
+        debugLog.appendChild(line);
+        debugLog.scrollTop = debugLog.scrollHeight;
+        while (debugLog.children.length > 20) {
+          debugLog.removeChild(debugLog.firstChild);
+        }
+      }
+
+      console.log = function (...args) {
+        originalConsoleLog.apply(console, args);
+        addDebugLine("log", ...args);
+      };
+
+      console.error = function (...args) {
+        originalConsoleError.apply(console, args);
+        addDebugLine("error", ...args);
+      };
+
+      // ===== SPEECH RECOGNITION SETUP =====
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        alert(
+          "⚠️ Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari."
+        );
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onstart = () => {
+        console.log("🎤 Speech recognition STARTED");
+        isRecognizing = true;
+      };
+
+      recognition.onresult = async (event) => {
+        console.log("📝 Speech recognition got result");
+        const transcript = event.results[0][0].transcript;
+        const confidence = event.results[0][0].confidence;
+        console.log(`✅ You said: "${transcript}" (confidence: ${confidence})`);
+
+        stopListening();
+        callStatus.textContent = "Processing your message...";
+
+        addTranscript("USER", transcript);
+        await saveTranscript("USER", transcript);
+        await getAIResponseAndSpeak(transcript);
+      };
+
+      recognition.onerror = (event) => {
+        console.error("❌ Speech recognition error:", event.error);
+        let errorMessage = "";
+
+        switch (event.error) {
+          case "no-speech":
+            errorMessage = "No speech detected. Please try again.";
+            break;
+          case "audio-capture":
+            errorMessage =
+              "Microphone not accessible. Please check permissions.";
+            break;
+          case "not-allowed":
+            errorMessage =
+              "Microphone access denied. Please allow microphone access in browser settings.";
+            break;
+          case "network":
+            errorMessage = "Network error. Please check your connection.";
+            break;
+          case "aborted":
+            console.log("Recognition aborted (normal if user stopped)");
+            return;
+          default:
+            errorMessage = `Speech recognition error: ${event.error}`;
+        }
+
+        if (errorMessage) {
+          callStatus.textContent = errorMessage;
+          alert(errorMessage);
+        }
+
+        resetMicState();
+      };
+
+      recognition.onend = () => {
+        console.log("🔴 Speech recognition ENDED");
+        isRecognizing = false;
+        if (!isAISpeaking && isMuted) {
+          callStatus.textContent = "Ready to talk";
+        }
+      };
+
+      // ===== AGORA INITIALIZATION =====
+      async function initializeCall() {
+        try {
+          console.log("🚀 Initializing Agora call...");
+
+          const tokenResponse = await fetch("/api/agora/token", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ channelName, uid: 0 }),
+          });
+
+          const tokenData = await tokenResponse.json();
+          console.log("✅ Got Agora token");
+
+          rtcClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+
+          await rtcClient.join(
+            tokenData.appId,
+            channelName,
+            tokenData.rtcToken,
+            0
+          );
+          console.log("✅ Joined Agora channel");
+
+          localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+          await localAudioTrack.setMuted(true);
+          await rtcClient.publish([localAudioTrack]);
+
+          console.log("✅ Published audio track");
+
+          callStatus.textContent = "Connected - Ready to talk";
+          micBtn.disabled = false;
+          statusDot.classList.add("listening");
+
+          setTimeout(() => {
+            const greeting = `Hello! I'm your AI Legal Buddy for <%= session.category %> issues. Please tell me what happened.`;
+            addTranscript("AI", greeting);
+            speak(greeting);
+          }, 1000);
+
+          console.log("✅ Agora call initialized successfully");
+        } catch (error) {
+          console.error("❌ Agora initialization error:", error);
+          callStatus.textContent = "Connection failed - Check console";
+          alert(
+            "Failed to connect to voice service. Please check your microphone permissions and try again."
+          );
+        }
+      }
+
+      // ===== MIC CONTROLS =====
+      async function toggleMic() {
+        if (isAISpeaking) {
+          console.log("⚠️ Cannot toggle mic - AI is speaking");
+          return;
+        }
+
+        if (isMuted) {
+          try {
+            await localAudioTrack.setMuted(false);
+            isMuted = false;
+            isRecognizing = true;
+
+            micBtn.classList.remove("muted");
+            micBtn.classList.add("listening");
+            micBtn.textContent = "🎤 Listening...";
+            statusDot.classList.add("listening");
+            callStatus.textContent = "Listening to you - Speak now!";
+            listeningIndicator.classList.add("show");
+
+            recognition.start();
+            console.log("✅ Speech recognition started");
+          } catch (error) {
+            console.error("❌ Failed to start recognition:", error);
+            alert("Failed to start speech recognition. Please try again.");
+            resetMicState();
+          }
+        } else {
+          stopListening();
+        }
+      }
+
+      function stopListening() {
+        if (isRecognizing) {
+          recognition.stop();
+          isRecognizing = false;
+        }
+
+        if (!isMuted) {
+          localAudioTrack.setMuted(true);
+          isMuted = true;
+        }
+
+        micBtn.classList.add("muted");
+        micBtn.classList.remove("listening");
+        micBtn.textContent = "🔇 Microphone Off";
+        statusDot.classList.remove("listening");
+        callStatus.textContent = "Ready to talk";
+        listeningIndicator.classList.remove("show");
+      }
+
+      function resetMicState() {
+        isRecognizing = false;
+        isMuted = true;
+        isAISpeaking = false;
+
+        if (localAudioTrack) {
+          localAudioTrack.setMuted(true);
+        }
+
+        micBtn.classList.add("muted");
+        micBtn.classList.remove("listening", "speaking");
+        micBtn.disabled = false;
+        micBtn.textContent = "🔇 Microphone Off";
+        statusDot.classList.remove("listening", "speaking");
+        callStatus.textContent = "Ready to talk";
+        listeningIndicator.classList.remove("show");
+      }
+
+      // ===== AI RESPONSE =====
+      async function getAIResponseAndSpeak(userMessage) {
+        isAISpeaking = true;
+        micBtn.disabled = true;
+        micBtn.classList.add("speaking");
+        micBtn.textContent = "🤖 AI is thinking...";
+        statusDot.classList.remove("listening");
+        statusDot.classList.add("speaking");
+        callStatus.textContent = "AI is responding...";
+
+        try {
+          const context = `Legal Category: <%= session.category %>. Conversation: ${conversationHistory
+            .slice(-5)
+            .map((t) => `${t.speaker}: ${t.text}`)
+            .join(" | ")}`;
+          console.log("📤 Sending to AI:", userMessage);
+
+          const response = await fetch("/api/ai/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage, context }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+
+          const data = await response.json();
+          const aiMessage =
+            data.response ||
+            "Sorry, I did not understand. Can you please repeat?";
+          console.log("📥 AI Response:", aiMessage);
+
+          addTranscript("AI", aiMessage);
+          await saveTranscript("AI", aiMessage);
+          speak(aiMessage);
+
+          if (conversationHistory.length >= 6 && !isProcessing) {
+            processWithAI();
+          }
+        } catch (error) {
+          console.error("❌ AI Chat Error:", error);
+          const errorMsg = "Sorry, there was an error. Please try again.";
+          addTranscript("AI", errorMsg);
+          speak(errorMsg);
+        }
+      }
+
+      // ===== TEXT-TO-SPEECH =====
+      function speak(text) {
+        synth.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US";
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+
+        const voices = synth.getVoices();
+        const preferredVoice =
+          voices.find(
+            (v) => v.lang.startsWith("en") && v.name.includes("Female")
+          ) || voices[0];
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+        }
+
+        utterance.onstart = () => {
+          console.log("🔊 AI started speaking");
+          isAISpeaking = true;
+          micBtn.textContent = "🔊 AI is speaking...";
+          callStatus.textContent = "AI is speaking...";
+        };
+
+        utterance.onend = () => {
+          console.log("✅ AI finished speaking");
+          isAISpeaking = false;
+          micBtn.disabled = false;
+          micBtn.classList.remove("speaking");
+          micBtn.textContent = "🔇 Microphone Off";
+          statusDot.classList.remove("speaking");
+          statusDot.classList.add("listening");
+          callStatus.textContent = "Your turn - Click mic to speak";
+        };
+
+        utterance.onerror = (event) => {
+          console.error("❌ Speech synthesis error:", event);
+          isAISpeaking = false;
+          micBtn.disabled = false;
+          micBtn.classList.remove("speaking");
+          callStatus.textContent = "Speech error - Ready to continue";
+        };
+
+        console.log("🗣️ Speaking:", text);
+        synth.speak(utterance);
+      }
+
+      // ===== TRANSCRIPT FUNCTIONS =====
+      function addTranscript(speaker, text) {
+        const transcriptBox = document.getElementById("transcript");
+        if (transcriptBox.querySelector('p[style*="opacity: 0.6"]')) {
+          transcriptBox.innerHTML = "";
+        }
+
+        const item = document.createElement("div");
+        item.className = `transcript-item ${speaker.toLowerCase()}`;
+        item.innerHTML = `
+          <div class="speaker-label">${
+            speaker === "USER" ? "You" : "AI Legal Buddy"
+          }</div>
+          <div>${text}</div>
+        `;
+
+        transcriptBox.appendChild(item);
+        transcriptBox.scrollTop = transcriptBox.scrollHeight;
+        conversationHistory.push({ speaker, text });
+      }
+
+      async function saveTranscript(speaker, text) {
+        try {
+          await fetch("/api/transcript/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId, speaker, text }),
+          });
+        } catch (error) {
+          console.error("Failed to save transcript:", error);
+        }
+      }
+
+      // ===== SIDEBAR UPDATES =====
+      async function processWithAI() {
+        isProcessing = true;
+        const stepsList = document.getElementById("stepsList");
+        stepsList.innerHTML =
+          '<li class="step-item">Analyzing conversation...</li>';
+
+        const fullTranscript = conversationHistory
+          .map((t) => `${t.speaker}: ${t.text}`)
+          .join("\n");
+
+        try {
+          const response = await fetch("/api/ai/process", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              sessionId,
+              fullTranscript,
+              category: "<%= session.category %>",
+            }),
+          });
+
+          const summary = await response.json();
+          updateActionSteps(summary);
+          updateContacts(summary);
+        } catch (error) {
+          console.error("AI processing error:", error);
+          stepsList.innerHTML =
+            '<li class="step-item">Continue conversation for guidance...</li>';
+        }
+      }
+
+      function updateActionSteps(summary) {
+        const stepsList = document.getElementById("stepsList");
+        stepsList.innerHTML = "";
+        const steps = summary.recommendedSteps || [
+          "Continue talking to get personalized steps",
+        ];
+        steps.forEach((step) => {
+          const li = document.createElement("li");
+          li.className = "step-item";
+          li.innerHTML = `<input type="checkbox" class="step-checkbox" onchange="this.parentElement.classList.toggle('completed')">${step}`;
+          stepsList.appendChild(li);
+        });
+      }
+
+      function updateContacts(summary) {
+        const contactsDiv = document.getElementById("contacts");
+        let html = "";
+        const contacts = summary.contacts || {
+          PAO: "929-9436",
+          DOLE: "1349",
+          Barangay: "Local directory",
+        };
+        for (const [key, value] of Object.entries(contacts)) {
+          html += `<p><strong>${key.replace("_", " ")}:</strong> ${value}</p>`;
+        }
+        contactsDiv.innerHTML = html;
+      }
+
+      // ===== END CALL =====
+      async function endCall() {
+        synth.cancel();
+        recognition.stop();
+        if (localAudioTrack) localAudioTrack.close();
+        if (rtcClient) await rtcClient.leave();
+
+        await fetch("/api/session/end", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId }),
+        });
+
+        window.location.href = `/summary/${sessionId}`;
+      }
+
+      // ===== LOAD VOICES =====
+      if (synth.onvoiceschanged !== undefined) {
+        synth.onvoiceschanged = () => {
+          console.log("Voices loaded:", synth.getVoices().length);
+        };
+      }
+
+      // ===== START =====
+      window.addEventListener("load", () => {
+        initializeCall();
+      });
+    </script>
+  </body>
+</html>

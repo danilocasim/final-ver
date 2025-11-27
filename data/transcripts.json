@@ -1,0 +1,584 @@
+[
+  {
+    "sessionId": "93581846-fd66-48fe-85f9-e6717f09f78a",
+    "speaker": "USER",
+    "text": "Ang landlord ko ay pinipilit akong umalis ng bahay kahit may kontrata pa ako.",
+    "timestamp": 1764207493396
+  },
+  {
+    "sessionId": "93581846-fd66-48fe-85f9-e6717f09f78a",
+    "speaker": "AI",
+    "text": "\"Kumusta ka? Sorry to hear na pinipilit ka ng landlord mo umalis ng bahay. Alalahanin mo na may kontrata ka, at may karapatan ka sa ilalim ng Batas Pambansa Blg. 877 (For Rent Control Act). Pwede mong ipagtanong sa barangay o humingi ng tulong sa isang abogado para maprotektahan ang iyong mga karapatan bilang tenant.\"",
+    "timestamp": 1764207500937
+  },
+  {
+    "sessionId": "93581846-fd66-48fe-85f9-e6717f09f78a",
+    "speaker": "USER",
+    "text": "Walang notice na binigay at banta pa ng force eviction.",
+    "timestamp": 1764207503980
+  },
+  {
+    "sessionId": "93581846-fd66-48fe-85f9-e6717f09f78a",
+    "speaker": "AI",
+    "text": "\"Kumusta ka? Nakakalungkot nang marinig 'yan. Sa ilalim ng Labor Code, may karapatan kang matanggap ng notice bago ka ma-evict o ma-terminate. Pwede kang mag-reklamo sa DOLE o mag-consult sa abogado para sa tulong. Huwag kang matakot, may batas na nagproprotektahan sa 'yo.\"",
+    "timestamp": 1764207510932
+  },
+  {
+    "sessionId": "93581846-fd66-48fe-85f9-e6717f09f78a",
+    "speaker": "USER",
+    "text": "Ano po ang dapat kong gawin?",
+    "timestamp": 1764207513962
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Ang landlord ko ay pinipilit akong umalis ng bahay kahit may kontrata pa ako.",
+    "timestamp": 1764208137890
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "\"Sorry to hear that, kaibigan. Kailangan mo ng tulong. Pwede mong ipaalam sa barangay hall tungkol sa problema mo. Mayroon silang barangay mediation na pwede kang matulungan. Ipakita mo ang kontrata mo at sabihin ang lahat ng nangyari. Baka makatulong sila na hindi ka ma-evict nang walang dahilan.\"",
+    "timestamp": 1764208143494
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Walang notice na binigay at banta pa ng force eviction.",
+    "timestamp": 1764208146526
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "\"Kawawa naman po kayo. Sa ilalim ng Philippine law, may karapatan kayo na makatanggap ng proper notice bago ang eviction. Pwede po kayong lumapit sa barangay hall at ipaalam ang sitwasyon ninyo. Pwedeng gumawa ng complaint laban sa mga nang-banta sa inyo. Magpakonsulta po kayo sa isang abogado para sa tulong at gabay.\"",
+    "timestamp": 1764208152867
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Ano po ang dapat kong gawin?",
+    "timestamp": 1764208155898
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "Kumusta po? Kailangan ninyo ng tulong sa barangay? Pwede po ninyo kontakin ang inyong barangay captain o punong barangay para sa mga concern ninyo. Sila po ang unang authority na dapat nyong lapitan. Pwedeng mag-request kayo ng barangay blotter o certification kung kinakailangan.",
+    "timestamp": 1764208161500
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Ang landlord ko ay pinipilit akong umalis ng bahay kahit may kontrata pa ako.",
+    "timestamp": 1764208167727
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "\"Huwag kang mag-alala, may karapatan ka sa ilalim ng batas. Pwede mong ipaalam sa landlord mo na hindi ka pwedeng paalisin hangga't may kontrata kayo. Magpakonsulta ka sa barangay hall o sa isang abogado para sa tulong at gabay. Magdala ka ng kopya ng kontrata mo para sa ebidensya.\"",
+    "timestamp": 1764208173615
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Walang notice na binigay at banta pa ng force eviction.",
+    "timestamp": 1764208176646
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "\"Kumusta ka? Nakakalungkot nang marinig 'yan. Ayon sa batas, may karapatan ka sa due process. Pwede mong ipagtanong sa barangay kung mayroong sulat na notice na binigay sa iyo. Kung wala, pwede kang mag-file ng complaint sa barangay o sa Regional Trial Court. Huwag mag-atubili, kumonsulta ka agad sa isang abogado para sa tulong.\"",
+    "timestamp": 1764208182286
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Ano po ang dapat kong gawin?",
+    "timestamp": 1764208185315
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Ang landlord ko ay pinipilit akong umalis ng bahay kahit may kontrata pa ako.",
+    "timestamp": 1764208185662
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "Kumusta po? Kung may problema ka sa barangay, pwede mong lapitan ang barangay captain o mga councilors para mag-reklamo o humingi ng tulong. Pwede rin mong bisitahin ang barangay hall para magtanong tungkol sa mga serbisyo at programa nila. Magdala ng mga kaukulang dokumento para sa iyong complaint o concern.",
+    "timestamp": 1764208190917
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Ang landlord ko ay pinipilit akong umalis ng bahay kahit may kontrata pa ako.",
+    "timestamp": 1764208204972
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "\"Sorry to hear that, kabayan. Kumuha ka ng tulong sa barangay ninyo. Puntahan mo ang barangay hall at ipaalam sa kanila ang situwasyon mo. Mayroong barangay conciliation process na pwede mong gamitin para makipag-usap sa landlord mo. Magdala ka ng kontrata mo at ibang mahahalagang dokumento.\"",
+    "timestamp": 1764208210432
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "USER",
+    "text": "Walang notice na binigay at banta pa ng force eviction.",
+    "timestamp": 1764208213464
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "speaker": "AI",
+    "text": "Pasensya po, may problema sa connection. Ulitin natin.",
+    "timestamp": 1764208218544
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "speaker": "USER",
+    "text": "Ang landlord ko ay pinipilit akong umalis ng bahay kahit may kontrata pa ako.",
+    "timestamp": 1764209497946
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "speaker": "AI",
+    "text": "Ano yung sabi ng kontrata? Bakit siya gusto ka umalis?",
+    "timestamp": 1764209503442
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "speaker": "USER",
+    "text": "Walang notice na binigay at banta pa ng force eviction.",
+    "timestamp": 1764209507045
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "speaker": "AI",
+    "text": "Ano yung nangyari? May kontrata ba kayo?",
+    "timestamp": 1764209513064
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "speaker": "USER",
+    "text": "Ano po ang dapat kong gawin?",
+    "timestamp": 1764209517012
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "speaker": "AI",
+    "text": "Anong problema mo as tenant? May issue ka ba sa landlord mo?",
+    "timestamp": 1764209523348
+  },
+  {
+    "sessionId": "278e88d2-11c7-4cda-a39f-c0ac09b2cc14",
+    "speaker": "USER",
+    "text": "pinaalis kasi ako eh anong gagawin ko",
+    "timestamp": 1764210087989
+  },
+  {
+    "sessionId": "278e88d2-11c7-4cda-a39f-c0ac09b2cc14",
+    "speaker": "USER",
+    "text": "pwede mo ba akong tulungan",
+    "timestamp": 1764210132647
+  },
+  {
+    "sessionId": "7cf98a82-877d-4d35-bb08-006846477f65",
+    "speaker": "USER",
+    "text": "so i got stabbed by my neighbor what should i do",
+    "timestamp": 1764210554965
+  },
+  {
+    "sessionId": "eeef5fa8-c5bf-44bc-8840-4a3cebe2ac51",
+    "speaker": "USER",
+    "text": "can you help me",
+    "timestamp": 1764210852415
+  },
+  {
+    "sessionId": "09f53c6e-00d9-46e4-a615-717cf634cfb5",
+    "speaker": "USER",
+    "text": "can you help me",
+    "timestamp": 1764210924334
+  },
+  {
+    "sessionId": "09f53c6e-00d9-46e4-a615-717cf634cfb5",
+    "speaker": "USER",
+    "text": "can you help me",
+    "timestamp": 1764211156479
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764211314078
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764211374025
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "AI",
+    "text": "\"Ano nangyari? Bakit ka na-evict?\"",
+    "timestamp": 1764211374554
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "anong pwedeng gawin",
+    "timestamp": 1764211382167
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "anong pwedeng gawin",
+    "timestamp": 1764211395262
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764211445056
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764211463673
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "AI",
+    "text": "Ano nangyari? Bakit ka na-kick out?",
+    "timestamp": 1764211464125
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764211471623
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764211478070
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764211485079
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent anong gagawin ko",
+    "timestamp": 1764211529727
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764211536405
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng re",
+    "timestamp": 1764211542379
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764211753213
+  },
+  {
+    "sessionId": "09f53c6e-00d9-46e4-a615-717cf634cfb5",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764211804298
+  },
+  {
+    "sessionId": "09f53c6e-00d9-46e4-a615-717cf634cfb5",
+    "speaker": "USER",
+    "text": "hindi kasi ako nagbayad ng rent",
+    "timestamp": 1764211919212
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "speaker": "USER",
+    "text": "hindi ako nagbayad ng rent",
+    "timestamp": 1764212060791
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764212196469
+  },
+  {
+    "sessionId": "b3cb919c-ce4d-4e14-8524-b6b9e39b9d76",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764212560935
+  },
+  {
+    "sessionId": "b3cb919c-ce4d-4e14-8524-b6b9e39b9d76",
+    "speaker": "USER",
+    "text": "i got kicked out",
+    "timestamp": 1764212750341
+  },
+  {
+    "sessionId": "4439247b-b385-43f0-acb1-b58931e8b4b5",
+    "speaker": "USER",
+    "text": "can you go to kuya anong gagawin ko",
+    "timestamp": 1764212969252
+  },
+  {
+    "sessionId": "4439247b-b385-43f0-acb1-b58931e8b4b5",
+    "speaker": "USER",
+    "text": "hello what's up",
+    "timestamp": 1764213074522
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "speaker": "USER",
+    "text": "what is up",
+    "timestamp": 1764213488241
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "speaker": "USER",
+    "text": "what is up what is up",
+    "timestamp": 1764213505285
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "speaker": "USER",
+    "text": "i'm stuck",
+    "timestamp": 1764213720828
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "speaker": "AI",
+    "text": "Anu nga nangyari, kaibigan? May problema ba ka sa landlord mo o sa rental contract?",
+    "timestamp": 1764213721305
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "speaker": "USER",
+    "text": "gusto ko na lumayas eh",
+    "timestamp": 1764213733051
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "speaker": "USER",
+    "text": "i want to get out",
+    "timestamp": 1764213744128
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "speaker": "USER",
+    "text": "i got kicked out by my owner what should i do",
+    "timestamp": 1764214080168
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "speaker": "AI",
+    "text": "Anong nangyari, sir? Kinasuhan ba kayo ng owner n'yo? (What happened, sir? Were you sued by your owner?)",
+    "timestamp": 1764214080633
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "speaker": "USER",
+    "text": "pinatay ko siya anong gagawin ko",
+    "timestamp": 1764214093406
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "speaker": "USER",
+    "text": "pinatay ko siya eh anong gagawin ko",
+    "timestamp": 1764214103894
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "speaker": "USER",
+    "text": "pinatay ko yung tenant ko anong gagawin ko",
+    "timestamp": 1764214129942
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "speaker": "USER",
+    "text": "can i kill you",
+    "timestamp": 1764214145245
+  },
+  {
+    "sessionId": "d7530935-be6d-49b6-bd9b-7e7c798d113c",
+    "speaker": "USER",
+    "text": "what should i do i got kicked out by my owner",
+    "timestamp": 1764214209499
+  },
+  {
+    "sessionId": "d7530935-be6d-49b6-bd9b-7e7c798d113c",
+    "speaker": "USER",
+    "text": "hello i got kick out by my owner what should i do",
+    "timestamp": 1764214223430
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "USER",
+    "text": "i didn't pay my tenant so i killed her what should i do",
+    "timestamp": 1764214366806
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "AI",
+    "text": "Ayoko ng ganito ka-seriyo! Bakit mo naman ginawa yan? Bumalik ka sa katotohanan, ano ang nangyari talaga?",
+    "timestamp": 1764214367318
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "USER",
+    "text": "putang ina ayoko na",
+    "timestamp": 1764214379843
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "AI",
+    "text": "Anak, wala kang patawaran. Bakit ka naman nagsasabi ng ganito ka-seriyo? Nagagalit ka ba sa tenant mo?",
+    "timestamp": 1764214380289
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "USER",
+    "text": "paano pag pinatay ko yung tenant ko",
+    "timestamp": 1764214400324
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "AI",
+    "text": "Anak, wala kang patawaran. Ito'y krimen ng pagpatay sa tao, kaya dapat kang lumapit sa pulis at magsumite ng sarili mo sa kanila.",
+    "timestamp": 1764214400779
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "USER",
+    "text": "okay thank you",
+    "timestamp": 1764214414122
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "speaker": "AI",
+    "text": "Pasensya na, walang available na AI service. Please check your API keys.",
+    "timestamp": 1764214414137
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "USER",
+    "text": "ang ingay kasi ng kapitbahay ko pwede ba ano hindi pa tawagin sa barangay",
+    "timestamp": 1764214515159
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "AI",
+    "text": "Kumusta ka na? Ang ingay ng kapitbahay mo ba, ano ba yung problema? May noise disturbance ba sila, like naglalabas ng bawas o naglalaba ng malalim?",
+    "timestamp": 1764214515603
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "USER",
+    "text": "nakanta kasi sila eh",
+    "timestamp": 1764214532484
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "AI",
+    "text": "Ayan, singko na yung problema. Nakanta sila ng mahaba, siguro sa gabi? May mga kainuman ba sila, o nagpapayat sila ng musika?",
+    "timestamp": 1764214532928
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "USER",
+    "text": "may inuman pwede ba siya lang i-ref",
+    "timestamp": 1764214551972
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "AI",
+    "text": "Hindi naman, kung may inuman sila, dapat din may permit sila sa barangay para sa noise disturbance. Kumusta kasi ang pagpapayat nila ng musika?",
+    "timestamp": 1764214552406
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "USER",
+    "text": "meron siyang ano",
+    "timestamp": 1764214584365
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "speaker": "AI",
+    "text": "Pasensya na, walang available na AI service. Please check your API keys.",
+    "timestamp": 1764214584387
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "job description ano pong pwedeng gawin",
+    "timestamp": 1764214768766
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Kumusta ka na? Anong job description mo kaya? Pwede ba natin ilarawan ang mga responsibilidad mo sa trabaho mo?",
+    "timestamp": 1764214769223
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "programmer ako pero pinagluto ako ng pancit canton",
+    "timestamp": 1764214794646
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Haha, pareho ba 'to? (laughs) Ang gulo, programmer ka pero nagluto ka ng pancit? Anong nangyari, napagkamalan ka ba ng boss mo?",
+    "timestamp": 1764214795068
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "pwede bang i-ref sa dole",
+    "timestamp": 1764214813143
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Hindi ba? Mayroon ka ba pangunahing reason kung bakit gusto mong irefer sa DOLE, anong nangyari sa workplace mo?",
+    "timestamp": 1764214813552
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "binibigyan ako ng ano ng ano tapos nagpa power trip sila",
+    "timestamp": 1764214832944
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Pasensya na, walang available na AI service. Please check your API keys.",
+    "timestamp": 1764214832965
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "anong pwedeng gawin pina power trip ako ng boss ko",
+    "timestamp": 1764214998383
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Pwede ka namang mag-file ng complaint sa DOLE kung nakuha ka ng unfair labor practice mula sa boss mo. May kapangyarihan ka sa pag-file ng kaso kapag nakakapanloko ka. \n\nAnong mga ebidensya mo ba ang makakapagpapatunay ng power trip na ginawa ng boss mo?",
+    "timestamp": 1764214999051
+  }
+]

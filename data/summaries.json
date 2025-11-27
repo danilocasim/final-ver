@@ -1,0 +1,27 @@
+[
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "situation": "Tenant being forced to vacate with an existing contract and no prior notice",
+    "relevantLaws": [
+      "Civil Code (Article 1670)",
+      "RA 9653 (Rent Control Act)",
+      "Presidential Decree No. 1091"
+    ],
+    "recommendedSteps": [
+      "Review the contract and identify the terms and conditions",
+      "Document all communications with the landlord, including the threat of force eviction",
+      "Seek assistance from the barangay through the Katarungang Pambarangay system"
+    ],
+    "contacts": {
+      "Barangay": "Local Barangay Hall",
+      "DOLE": "Department of Labor and Employment",
+      "PAO": "Public Attorney's Office",
+      "HLURB": "Housing and Land Use Regulatory Board"
+    },
+    "nextAction": {
+      "step": "Schedule a meeting with the barangay officials to mediate the dispute",
+      "timeline": "Within 3-5 working days"
+    },
+    "createdAt": 1764209531052
+  }
+]

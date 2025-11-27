@@ -1,0 +1,322 @@
+[
+  {
+    "sessionId": "93581846-fd66-48fe-85f9-e6717f09f78a",
+    "category": "WORKPLACE",
+    "status": "COMPLETED",
+    "startTime": 1764207488733,
+    "endTime": 1764207519581
+  },
+  {
+    "sessionId": "a2ab7089-9253-4921-bc7e-543b8d28d072",
+    "category": "WORKPLACE",
+    "status": "COMPLETED",
+    "startTime": 1764207743127,
+    "endTime": 1764207756983
+  },
+  {
+    "sessionId": "80d42e95-ce9f-497a-b81d-151f9824c61b",
+    "category": "BARANGAY",
+    "status": "COMPLETED",
+    "startTime": 1764208120402,
+    "endTime": 1764208220920
+  },
+  {
+    "sessionId": "cf55281f-a3e1-4299-8d3f-393e51deb42d",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208497697,
+    "endTime": null
+  },
+  {
+    "sessionId": "46df864a-f793-4d4b-a018-1ab4373f1cb0",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208499112,
+    "endTime": null
+  },
+  {
+    "sessionId": "674a414d-52da-4680-9120-cada5dcd19de",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208501880,
+    "endTime": null
+  },
+  {
+    "sessionId": "98486315-7257-4845-94a8-c2badc298be1",
+    "category": "WORKPLACE",
+    "status": "ACTIVE",
+    "startTime": 1764208504245,
+    "endTime": null
+  },
+  {
+    "sessionId": "1ee723ce-1f61-4b92-9df6-10b75b759fdd",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208528398,
+    "endTime": null
+  },
+  {
+    "sessionId": "0936fe95-9c94-449c-968a-315dbceb6b89",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208528971,
+    "endTime": null
+  },
+  {
+    "sessionId": "48fc556a-0681-41af-938e-02df4b6f9100",
+    "category": "WORKPLACE",
+    "status": "ACTIVE",
+    "startTime": 1764208591588,
+    "endTime": null
+  },
+  {
+    "sessionId": "3f60ddfe-b701-496a-b95a-f5ed53f030c2",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208602175,
+    "endTime": null
+  },
+  {
+    "sessionId": "a0e947a8-5809-4e9e-9942-2be5d548aa0b",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208603212,
+    "endTime": null
+  },
+  {
+    "sessionId": "ad03c7af-e7af-4826-b827-21ee0cdd2d52",
+    "category": "BARANGAY",
+    "status": "ACTIVE",
+    "startTime": 1764208629716,
+    "endTime": null
+  },
+  {
+    "sessionId": "4b4e13ba-60c1-436e-93ef-85be1b67c566",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208893242,
+    "endTime": null
+  },
+  {
+    "sessionId": "8594f719-f233-4581-ad32-15c7d8280591",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208957139,
+    "endTime": null
+  },
+  {
+    "sessionId": "f1af3277-7cf2-448b-9381-0c4509fc03e7",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208963484,
+    "endTime": null
+  },
+  {
+    "sessionId": "5824e72c-2685-45fa-ae4b-1f8e0f2ba14d",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208972249,
+    "endTime": null
+  },
+  {
+    "sessionId": "e6dc10c8-9504-4cc8-bdcb-1f185482d039",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208973351,
+    "endTime": null
+  },
+  {
+    "sessionId": "f2c9b6f0-0f12-4573-b4ec-ee431af29986",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764208974526,
+    "endTime": null
+  },
+  {
+    "sessionId": "6a356d43-e8fd-4836-bb76-cfe767f1173b",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209001578,
+    "endTime": null
+  },
+  {
+    "sessionId": "ce81e3ce-d595-4fb0-bb61-e4a2afca6291",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209002181,
+    "endTime": null
+  },
+  {
+    "sessionId": "fcd57df5-8695-4513-ab55-d5c58bb86d5e",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209002649,
+    "endTime": null
+  },
+  {
+    "sessionId": "9da23b7f-ade0-41ac-b1b1-c3852921be09",
+    "category": "BARANGAY",
+    "status": "ACTIVE",
+    "startTime": 1764209005560,
+    "endTime": null
+  },
+  {
+    "sessionId": "0521abc7-ac31-45b2-afd8-b7934371d6e7",
+    "category": "BARANGAY",
+    "status": "ACTIVE",
+    "startTime": 1764209005933,
+    "endTime": null
+  },
+  {
+    "sessionId": "b573ffa9-be02-4363-9f97-7b4664090150",
+    "category": "BARANGAY",
+    "status": "ACTIVE",
+    "startTime": 1764209007138,
+    "endTime": null
+  },
+  {
+    "sessionId": "04d8cb01-4249-44b7-9f40-1c02cf4e98ac",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209010342,
+    "endTime": null
+  },
+  {
+    "sessionId": "e2dcb55f-0b4f-4ea3-bf9f-6aa275b21469",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209293139,
+    "endTime": null
+  },
+  {
+    "sessionId": "40f96b17-6b37-4765-b09f-c168f53b42e8",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209294429,
+    "endTime": null
+  },
+  {
+    "sessionId": "9ce801ea-5b77-46e2-ad3b-01850bd8fd20",
+    "category": "GENERAL",
+    "status": "ACTIVE",
+    "startTime": 1764209297397,
+    "endTime": null
+  },
+  {
+    "sessionId": "d16d23b1-b572-48b3-a504-9a2f5bc13758",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209298663,
+    "endTime": null
+  },
+  {
+    "sessionId": "8eebe5c2-77ad-4e49-90aa-e3b315cf2bf0",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764209492374,
+    "endTime": 1764209546720
+  },
+  {
+    "sessionId": "fc329c52-eea1-4e52-84b6-d57e07509ebf",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764209714952,
+    "endTime": null
+  },
+  {
+    "sessionId": "278e88d2-11c7-4cda-a39f-c0ac09b2cc14",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764210075712,
+    "endTime": null
+  },
+  {
+    "sessionId": "7cf98a82-877d-4d35-bb08-006846477f65",
+    "category": "BARANGAY",
+    "status": "ACTIVE",
+    "startTime": 1764210531184,
+    "endTime": null
+  },
+  {
+    "sessionId": "eeef5fa8-c5bf-44bc-8840-4a3cebe2ac51",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764210842323,
+    "endTime": null
+  },
+  {
+    "sessionId": "09f53c6e-00d9-46e4-a615-717cf634cfb5",
+    "category": "WORKPLACE",
+    "status": "ACTIVE",
+    "startTime": 1764210913103,
+    "endTime": null
+  },
+  {
+    "sessionId": "d2433e80-d7ee-4b99-8a00-c03e1de065ce",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764211304019,
+    "endTime": 1764211488539
+  },
+  {
+    "sessionId": "1b2eb71a-1769-4793-beec-e8be55c60afd",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764211492580
+  },
+  {
+    "sessionId": "b3cb919c-ce4d-4e14-8524-b6b9e39b9d76",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764212547187
+  },
+  {
+    "sessionId": "4439247b-b385-43f0-acb1-b58931e8b4b5",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764212958718
+  },
+  {
+    "sessionId": "225dad36-8ef3-4275-94c4-b72d632a085f",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764213333161
+  },
+  {
+    "sessionId": "7423692c-a27c-4f44-8a8e-c0cf348edc6e",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764213347803
+  },
+  {
+    "sessionId": "dae71dbb-8e08-447b-9121-d29abe5d7077",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764214065738
+  },
+  {
+    "sessionId": "d7530935-be6d-49b6-bd9b-7e7c798d113c",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764214197157
+  },
+  {
+    "sessionId": "7a58a157-6af5-41ab-b3b6-2ad51bd5f343",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764214353532,
+    "endTime": 1764214433162
+  },
+  {
+    "sessionId": "b6b94aca-7bae-4c7f-8a74-6b39414226ad",
+    "category": "BARANGAY",
+    "status": "ACTIVE",
+    "startTime": 1764214501334
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "category": "WORKPLACE",
+    "status": "ACTIVE",
+    "startTime": 1764214752836
+  }
+]

@@ -1,0 +1,149 @@
+<!-- views/index.ejs - Landing Page -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Filipino Legal Buddy</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+      }
+      .container {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 90%;
+      }
+      h1 {
+        color: #667eea;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+      }
+      .tagline {
+        color: #666;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+      .category-select {
+        margin-bottom: 2rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #555;
+      }
+      select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: border 0.3s;
+      }
+      select:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+      .start-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .start-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+      }
+      .start-btn:active {
+        transform: translateY(0);
+      }
+      .features {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+      }
+      .feature {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
+      .feature::before {
+        content: "✓";
+        color: #667eea;
+        font-weight: bold;
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🇵🇭 AI Legal Buddy</h1>
+      <p class="tagline">Libreng legal na gabay sa Tagalog</p>
+
+      <div class="category-select">
+        <label for="category">Pumili ng kategorya:</label>
+        <select id="category">
+          <option value="TENANT">Tenant / Renter Issues</option>
+          <option value="WORKPLACE">Workplace / Labor Issues</option>
+          <option value="BARANGAY">Barangay / Community Issues</option>
+          <option value="GENERAL">General Legal Concern</option>
+        </select>
+      </div>
+
+      <button class="start-btn" onclick="startSession()">
+        🎙️ Magsimula ng Voice Call
+      </button>
+
+      <div class="features">
+        <div class="feature">Voice chat sa Tagalog at English</div>
+        <div class="feature">Real-time legal guidance</div>
+        <div class="feature">Automatic report generation</div>
+        <div class="feature">Step-by-step action plan</div>
+      </div>
+    </div>
+
+    <script>
+      async function startSession() {
+        const category = document.getElementById("category").value;
+
+        try {
+          const response = await fetch("/api/session/start", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ category }),
+          });
+
+          const session = await response.json();
+          window.location.href = `/call/${session.sessionId}`;
+        } catch (error) {
+          alert("Error starting session. Please try again.");
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
+</html>
