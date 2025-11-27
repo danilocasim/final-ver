@@ -1,4 +1,4 @@
-// server.js - Robust Version
+// server.js - With Final Summarization Support
 require("dotenv").config();
 
 process.on("unhandledRejection", (reason, promise) => {
@@ -18,7 +18,6 @@ const fs = require("fs").promises;
 const { v4: uuidv4 } = require("uuid");
 const multiAIService = require("./services/AIService");
 
-// --- CRITICAL FIX: Correct Import for Agora ---
 const AgoraAccessToken = require("agora-access-token");
 const { RtcTokenBuilder, RtcRole } = AgoraAccessToken;
 
@@ -104,7 +103,6 @@ class AgoraService {
     const currentTimestamp = Math.floor(Date.now() / 1000);
     const privilegeExpiredTs = currentTimestamp + expiration;
 
-    // Build the token
     const token = RtcTokenBuilder.buildTokenWithUid(
       appId,
       appCertificate,
@@ -173,7 +171,72 @@ app.post("/api/session/end", async (req, res) => {
   res.json({ success: true });
 });
 
-// 3. Transcript & AI
+// 3. NEW - Final Summarization Endpoint
+app.post("/api/session/summarize", async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+
+    console.log("\n📋 ============ GENERATING FINAL SUMMARY ============");
+    console.log("Session ID:", sessionId);
+
+    const session = await JSONService.findOne(
+      "sessions",
+      (s) => s.sessionId === sessionId
+    );
+    if (!session) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+
+    const transcripts = (await JSONService.read("transcripts")).filter(
+      (t) => t.sessionId === sessionId
+    );
+
+    if (transcripts.length === 0) {
+      return res
+        .status(400)
+        .json({ error: "No conversation found to summarize" });
+    }
+
+    const fullTranscript = transcripts
+      .map((t) => `${t.speaker}: ${t.text}`)
+      .join("\n");
+
+    console.log("Transcript length:", fullTranscript.length, "characters");
+    console.log("Category:", session.category);
+
+    // Call the new generateFinalSummary method
+    const summary = await multiAIService.generateFinalSummary(
+      fullTranscript,
+      session.category
+    );
+
+    const completeSummary = {
+      sessionId,
+      ...summary,
+      totalTranscripts: transcripts.length,
+      createdAt: Date.now(),
+    };
+
+    await JSONService.append("summaries", completeSummary);
+
+    console.log("✅ Summary generated and saved");
+    console.log("============================================\n");
+
+    res.json(completeSummary);
+  } catch (error) {
+    console.error("\n❌ ============ SUMMARIZATION ERROR ============");
+    console.error("Error:", error.message);
+    console.error("Stack:", error.stack);
+    console.error("============================================\n");
+
+    res.status(500).json({
+      error: "Failed to generate summary",
+      details: error.message,
+    });
+  }
+});
+
+// 4. Transcript & AI
 app.post("/api/transcript/save", async (req, res) => {
   const { sessionId, speaker, text } = req.body;
   await JSONService.append("transcripts", {
@@ -185,7 +248,6 @@ app.post("/api/transcript/save", async (req, res) => {
   res.json({ success: true });
 });
 
-// --- CRITICAL ROUTE: AI CHAT ---
 app.post("/api/ai/chat", async (req, res) => {
   try {
     const { message, context } = req.body;
@@ -194,7 +256,6 @@ app.post("/api/ai/chat", async (req, res) => {
     console.log("Message:", message);
     console.log("Context:", context?.substring(0, 100) + "...");
 
-    // Validate input
     if (!message || typeof message !== "string") {
       console.error("❌ Invalid message received");
       return res.json({
@@ -203,13 +264,11 @@ app.post("/api/ai/chat", async (req, res) => {
       });
     }
 
-    // Call AI Service with timeout protection
     const timeoutPromise = new Promise((_, reject) =>
       setTimeout(() => reject(new Error("AI request timeout after 30s")), 30000)
     );
 
     const aiPromise = multiAIService.generateResponse(message, context || "");
-
     const response = await Promise.race([aiPromise, timeoutPromise]);
 
     console.log("✅ AI Response:", response);
@@ -223,7 +282,6 @@ app.post("/api/ai/chat", async (req, res) => {
     console.error("Error Stack:", error.stack);
     console.error("==========================================\n");
 
-    // IMPORTANT: Don't crash, send a response
     res.json({
       response: "Pasensya na, may problema sa AI. Maaari mo bang ulitin?",
     });
@@ -233,11 +291,26 @@ app.post("/api/ai/chat", async (req, res) => {
 app.post("/api/ai/process", async (req, res) => {
   try {
     const { sessionId, fullTranscript, category } = req.body;
+
     const analysis = await multiAIService.analyzeLegalSituation(
       fullTranscript,
       category
     );
-    const summary = { sessionId, ...analysis, createdAt: Date.now() };
+
+    const summary = {
+      sessionId,
+      situation: analysis.situation || "No situation extracted",
+      relevantLaws: analysis.relevantLaws || [],
+      recommendedSteps: analysis.recommendedSteps || [],
+      contacts: analysis.contacts || {},
+      nextAction: analysis.nextAction || "No urgent action detected.",
+      totalDuration: analysis.totalDuration || 0,
+      aiTalkTime: analysis.aiTalkTime || 0,
+      humanTalkTime: analysis.humanTalkTime || 0,
+      conversationTurns: analysis.conversationTurns || 0,
+      createdAt: Date.now(),
+    };
+
     await JSONService.append("summaries", summary);
     res.json(summary);
   } catch (e) {
@@ -245,8 +318,22 @@ app.post("/api/ai/process", async (req, res) => {
     res.status(500).json({ error: "Processing failed" });
   }
 });
-// Add this test endpoint to your server.js to verify Groq works:
 
+// 5. Agora Token
+app.post("/api/agora/token", (req, res) => {
+  try {
+    const token = AgoraService.generateToken(
+      req.body.channelName || "default",
+      0
+    );
+    res.json(token);
+  } catch (e) {
+    console.error("Agora Token Error:", e);
+    res.status(500).json({ error: "Token generation failed" });
+  }
+});
+
+// 6. Test Endpoint
 app.get("/api/test-groq", async (req, res) => {
   try {
     console.log("\n🧪 TESTING GROQ CONNECTION...");
@@ -289,22 +376,6 @@ app.get("/api/test-groq", async (req, res) => {
       error: error.message,
       stack: error.stack,
     });
-  }
-});
-
-// Then visit: http://localhost:8200/api/test-groq
-
-// 4. Agora Token
-app.post("/api/agora/token", (req, res) => {
-  try {
-    const token = AgoraService.generateToken(
-      req.body.channelName || "default",
-      0
-    );
-    res.json(token);
-  } catch (e) {
-    console.error("Agora Token Error:", e);
-    res.status(500).json({ error: "Token generation failed" });
   }
 });
 

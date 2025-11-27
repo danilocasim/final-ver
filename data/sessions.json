@@ -316,7 +316,50 @@
   {
     "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
     "category": "WORKPLACE",
-    "status": "ACTIVE",
-    "startTime": 1764214752836
+    "status": "COMPLETED",
+    "startTime": 1764214752836,
+    "endTime": 1764217025300
+  },
+  {
+    "sessionId": "08606bfd-7bd7-4d5a-82cc-06d65b4619f2",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764217139748,
+    "endTime": 1764217148365
+  },
+  {
+    "sessionId": "565281fe-4a74-4256-b5da-06bb8aaf5981",
+    "category": "GENERAL",
+    "status": "COMPLETED",
+    "startTime": 1764217227207,
+    "endTime": 1764217262384
+  },
+  {
+    "sessionId": "fa392e81-4071-4fc2-8d64-8758fa9c6848",
+    "category": "WORKPLACE",
+    "status": "COMPLETED",
+    "startTime": 1764217941549,
+    "endTime": 1764217965083
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764218155113,
+    "endTime": 1764218638958
+  },
+  {
+    "sessionId": "7f54bf17-2aa8-49c7-bd9a-2bcaa9ad3702",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764218361408,
+    "endTime": 1764218402952
+  },
+  {
+    "sessionId": "352976f5-dfbd-4333-9216-0c8871731065",
+    "category": "BARANGAY",
+    "status": "COMPLETED",
+    "startTime": 1764218682285,
+    "endTime": 1764218698345
   }
 ]

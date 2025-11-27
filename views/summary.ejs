@@ -1,4 +1,4 @@
-<!-- views/summary.ejs - Summary Page -->
+<!-- views/summary.ejs - Enhanced Summary Page -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,6 +49,7 @@
         padding: 1.5rem;
         border-radius: 10px;
         border-left: 4px solid #667eea;
+        line-height: 1.6;
       }
       .laws-list {
         list-style: none;
@@ -60,6 +61,17 @@
         border-radius: 8px;
         margin-bottom: 0.5rem;
         border-left: 3px solid #ffc107;
+      }
+      .warning-list {
+        list-style: none;
+        padding: 0;
+      }
+      .warning-list li {
+        padding: 0.75rem;
+        background: #ffebee;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        border-left: 3px solid #f44336;
       }
       .steps-list {
         counter-reset: step-counter;
@@ -174,12 +186,23 @@
           </ol>
         </div>
 
+        <% if (summary.watchOutFor && summary.watchOutFor.length > 0) { %>
         <div class="section">
-          <h2>📞 Important Contacts</h2>
+          <h2>⚠️ What to Watch Out For (Red Flags)</h2>
+          <ul class="warning-list">
+            <% summary.watchOutFor.forEach(warning => { %>
+            <li><%= warning %></li>
+            <% }) %>
+          </ul>
+        </div>
+        <% } %>
+
+        <div class="section">
+          <h2>📞 Important Contacts & Hotlines</h2>
           <div class="contacts-grid">
             <% for (const [key, value] of Object.entries(summary.contacts)) { %>
             <div class="contact-card">
-              <strong><%= key.toUpperCase() %></strong>
+              <strong><%= key.toUpperCase().replace(/_/g, ' ') %></strong>
               <span><%= value %></span>
             </div>
             <% } %>
@@ -206,13 +229,10 @@
     </div>
 
     <script>
+      const summary = <%- JSON.stringify(summary) %>;
+
       async function generateReport() {
         const sessionId = "<%= session.sessionId %>";
-        //    '<% if (summary) { %>
-        //       const summary = <%- JSON.stringify(summary) %>;
-        //     <% } else { %>
-        //       const summary = null;
-        //     <% } %>'
 
         if (!summary || !summary.situation) {
           alert("Summary not available yet. Please wait for processing.");
@@ -234,6 +254,9 @@
                 details: summary.situation,
                 relevantLaws: summary.relevantLaws,
                 recommendedSteps: summary.recommendedSteps,
+                watchOutFor: summary.watchOutFor || [],
+                contacts: summary.contacts,
+                nextAction: summary.nextAction,
               },
             }),
           });

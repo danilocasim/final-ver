@@ -580,5 +580,269 @@
     "speaker": "AI",
     "text": "Pwede ka namang mag-file ng complaint sa DOLE kung nakuha ka ng unfair labor practice mula sa boss mo. May kapangyarihan ka sa pag-file ng kaso kapag nakakapanloko ka. \n\nAnong mga ebidensya mo ba ang makakapagpapatunay ng power trip na ginawa ng boss mo?",
     "timestamp": 1764214999051
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "anong pwedeng gawin",
+    "timestamp": 1764215438947
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Oo, ano ba nangyari sa iyong trabaho? Nakaranas ka ba ng harassment o kaya ay may problema ka sa kontrata mo? \n\n(I'll wait for your response to proceed.)",
+    "timestamp": 1764215439481
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "i want to die",
+    "timestamp": 1764215888422
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Kumusta ka? Naku, mabuti lang na tayo'y nag-usap. Baka mayroon ka nang problema sa iyong kalusugan o sa trabaho mo. Anong nangyari ba talaga sa trabaho mo na gusto mo nang mamatay?",
+    "timestamp": 1764215888934
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "can you speak in english i want to talk to you with english",
+    "timestamp": 1764216027140
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Oo, okay na. I'll switch to English for you. Anong nangyari sa iyong trabaho na gusto mo nang mamatay? Meron ba kayong problema sa employer ninyo o sa work conditions?",
+    "timestamp": 1764216027626
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "yeah i think our",
+    "timestamp": 1764216045634
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Pasensya na, walang available na AI service. Please check your API keys.",
+    "timestamp": 1764216045645
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "hello there",
+    "timestamp": 1764216867409
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Kumusta na? Nakakalungkot naman, ano ba nangyari sa iyo sa workplace? Kumusta na iyong kalagayan?",
+    "timestamp": 1764216867915
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "USER",
+    "text": "hello there",
+    "timestamp": 1764216993553
+  },
+  {
+    "sessionId": "4071fd2c-628b-4274-83bb-1c0b26721572",
+    "speaker": "AI",
+    "text": "Kumusta? Bakit namin kailangan ng tulong? Mayroon ka ba ng problema sa trabaho?",
+    "timestamp": 1764216994017
+  },
+  {
+    "sessionId": "565281fe-4a74-4256-b5da-06bb8aaf5981",
+    "speaker": "USER",
+    "text": "i killed someone",
+    "timestamp": 1764217253324
+  },
+  {
+    "sessionId": "565281fe-4a74-4256-b5da-06bb8aaf5981",
+    "speaker": "AI",
+    "text": "Kumusta, may sakit ka ba? (How are you, are you okay?) Mayroon ka bang alam kung ano ang nangyari? (Do you know what happened?)",
+    "timestamp": 1764217253886
+  },
+  {
+    "sessionId": "fa392e81-4071-4fc2-8d64-8758fa9c6848",
+    "speaker": "USER",
+    "text": "find the part trip by my employer",
+    "timestamp": 1764217953994
+  },
+  {
+    "sessionId": "fa392e81-4071-4fc2-8d64-8758fa9c6848",
+    "speaker": "AI",
+    "text": "Kumusta? Anong nangyari, sir/ma'am? May part-trip ba ito o official business trip ng employer ninyo, at may bayad ba sila sa inyo?",
+    "timestamp": 1764217954571
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "here's a thing i kick out by my employer",
+    "timestamp": 1764218178764
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Kumusta, kumusta lang po. Nag-resign ka ba talaga sa trabaho mo o ayaw lang ng employer mo sa'yo? Anong naging dahilan kung bakit kinuha mo ang pag-resign mo?",
+    "timestamp": 1764218179294
+  },
+  {
+    "sessionId": "7f54bf17-2aa8-49c7-bd9a-2bcaa9ad3702",
+    "speaker": "USER",
+    "text": "i was kicked out by the landlord",
+    "timestamp": 1764218376373
+  },
+  {
+    "sessionId": "7f54bf17-2aa8-49c7-bd9a-2bcaa9ad3702",
+    "speaker": "AI",
+    "text": "Kumusta na ang sitwasyon mo ngayon? Kikiliti ba ang landlord mo ng tarpin ng eviction notice sa inyo? Mayroon ba kayong nakuhang formal notice bago sila nag-evict sa inyo?",
+    "timestamp": 1764218376920
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "i was kicked out the employer and i want to suit",
+    "timestamp": 1764218548333
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Ano ang dahilan ng pagpaalis sa'yo?",
+    "timestamp": 1764218548804
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "i didn't pay rent",
+    "timestamp": 1764218555809
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Gaano katagal hindi ka nakapagbayad ng rent?",
+    "timestamp": 1764218556237
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "one day",
+    "timestamp": 1764218562829
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Isang araw lang? May notice ba sila na binigay sa'yo bago ka paalisin?",
+    "timestamp": 1764218563334
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "no",
+    "timestamp": 1764218573470
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Wala talagang notice? Ano ang sabi ng landlord sa iyo?",
+    "timestamp": 1764218573957
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "ayaw niya lang gusto niyang paalisin ako",
+    "timestamp": 1764218584048
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "May dahilan ba siya binigay sa iyo?",
+    "timestamp": 1764218584592
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "wala anong pwedeng gawin",
+    "timestamp": 1764218590519
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Pwede ka mag-file ng complaint. Ano ang exact na petsa ng pagbisita ng landlord sa iyo?",
+    "timestamp": 1764218591019
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "kanina lang",
+    "timestamp": 1764218601570
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Kanina lang, e-di recent pa. Anong oras?",
+    "timestamp": 1764218602115
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "5:00 a.m.",
+    "timestamp": 1764218608254
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Grabe, 5:00 a.m. aga naman. May notice ba sila na ibinigay?",
+    "timestamp": 1764218608734
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "wala",
+    "timestamp": 1764218615955
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Wala talagang notice. Paano sila pumasok?",
+    "timestamp": 1764218616433
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "sinira nila",
+    "timestamp": 1764218626287
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Sinira nila? Ano ang nangyari sa mga gamit mo?",
+    "timestamp": 1764218626697
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "USER",
+    "text": "nasa labas wala na",
+    "timestamp": 1764218634214
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "speaker": "AI",
+    "text": "Kinaltas ba ang mga gamit mo?",
+    "timestamp": 1764218634631
+  },
+  {
+    "sessionId": "352976f5-dfbd-4333-9216-0c8871731065",
+    "speaker": "USER",
+    "text": "hello there",
+    "timestamp": 1764218692094
+  },
+  {
+    "sessionId": "352976f5-dfbd-4333-9216-0c8871731065",
+    "speaker": "AI",
+    "text": "Kumusta po? Ano ang nangyari sa inyo sa barangay?",
+    "timestamp": 1764218692586
   }
 ]

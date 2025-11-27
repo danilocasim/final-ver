@@ -18,10 +18,98 @@
       "PAO": "Public Attorney's Office",
       "HLURB": "Housing and Land Use Regulatory Board"
     },
-    "nextAction": {
-      "step": "Schedule a meeting with the barangay officials to mediate the dispute",
-      "timeline": "Within 3-5 working days"
+    "nextAction": "Schedule a meeting with the barangay officials to mediate the dispute (Timeline: Within 3-5 working days)",
+    "createdAt": 1764209531052,
+    "watchOutFor": [
+      "Document all interactions and keep copies of all documents",
+      "Be aware of deadlines and prescription periods",
+      "Seek legal advice if situation escalates"
+    ]
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "situation": "Tenant was kicked out by the employer for non-payment of rent for one day",
+    "relevantLaws": [
+      "Republic Act No. 6517 (Rent Control Act of 1992)",
+      "Republic Act No. 9653 (Rent Control Act of 2009)",
+      "Presidential Decree No. 603 (Child and Youth Welfare Code)"
+    ],
+    "recommendedSteps": [
+      "Review the lease agreement to determine if the landlord followed the proper eviction procedure",
+      "File a complaint with the Department of Trade and Industry (DTI) or the Housing and Land Use Regulatory Board (HLURB) for assistance",
+      "Gather evidence to support the claim, such as proof of payment or notice of eviction",
+      "Consider seeking the advice of a lawyer specializing in tenant rights"
+    ],
+    "contacts": {
+      "DTI": "8811-8091 to 95",
+      "HLURB": "(02) 784-4835",
+      "Philippine National Police (PNP)": "117 or (02) 723-0401 to 20"
     },
-    "createdAt": 1764209531052
+    "nextAction": "Review the lease agreement and gather evidence to support the claim",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764218564743
+  },
+  {
+    "sessionId": "3977e325-64da-4d83-9def-61843fa7f38e",
+    "situation": "The user was kicked out by their employer due to non-payment of rent for one day, without prior notice. The landlord allegedly forced their way into the premises at 5:00 a.m. and removed the user's belongings.",
+    "relevantLaws": [
+      "The Rent Control Act of 2009 (RA 9653) which governs the relationship between landlords and tenants",
+      "The Civil Code of the Philippines (Article 1670) which discusses the rights and obligations of landlords and tenants",
+      "The Anti-Squatting Law (PD 772) which penalizes illegal trespassing and squatting"
+    ],
+    "recommendedSteps": [
+      "Document all evidence related to the incident, including photos and witness statements",
+      "Seek assistance from the barangay officials to mediate the dispute",
+      "Consider filing a complaint with the Philippine National Police (PNP) for illegal trespassing and removal of belongings",
+      "Consult with the Public Attorney's Office (PAO) for possible legal representation",
+      "Look for alternative accommodation and take necessary steps to secure personal safety"
+    ],
+    "watchOutFor": [
+      "Prescription periods for filing complaints or lawsuits",
+      "Possible retaliation or harassment from the landlord",
+      "Loss or damage to personal belongings",
+      "Risk of physical harm or conflict escalation"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Document all evidence related to the incident and seek assistance from the barangay officials to mediate the dispute as soon as possible",
+    "totalTranscripts": 24,
+    "createdAt": 1764218640715
+  },
+  {
+    "sessionId": "352976f5-dfbd-4333-9216-0c8871731065",
+    "situation": "The user greeted and inquired but did not provide specific details about their situation in the barangay.",
+    "relevantLaws": [
+      "The Local Government Code of 1991",
+      "The Barangay Justice System"
+    ],
+    "recommendedSteps": [
+      "Visit the local barangay hall to report the incident or concern",
+      "Gather evidence or witnesses if applicable",
+      "Seek advice from the barangay council or a legal expert"
+    ],
+    "watchOutFor": [
+      "Any form of harassment or intimidation",
+      "Deadline for filing complaints or reports",
+      "Potential escalation of the situation"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Contact the local barangay hall to inquire about the process for reporting concerns or incidents",
+    "totalTranscripts": 2,
+    "createdAt": 1764218699417
   }
 ]

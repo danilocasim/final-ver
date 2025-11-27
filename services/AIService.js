@@ -1,15 +1,12 @@
-// services/AIService.js - GROQ ONLY AI Service
+// services/AIService.js - With Final Summarization Support
 
 const OpenAI = require("openai");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 class MultiAIService {
   constructor() {
-    // Initialize AI clients - ONLY GROQ is enabled
     this.providers = {
       groq: {
         name: "Groq (Llama)",
-        // Groq uses the OpenAI SDK but points to the Groq API endpoint
         client: process.env.GROQ_API_KEY
           ? new OpenAI({
               apiKey: process.env.GROQ_API_KEY,
@@ -17,29 +14,12 @@ class MultiAIService {
             })
           : null,
         enabled: !!process.env.GROQ_API_KEY,
-        priority: 1, // <--- HIGHEST PRIORITY
-        available: true,
-      },
-      gemini: {
-        name: "Google Gemini",
-        client: null, // Client is explicitly disabled
-        enabled: false, // <--- DISABLED
-        priority: 2,
-        available: true,
-      },
-      openai: {
-        name: "OpenAI (GPT-4)",
-        client: null, // Client is explicitly disabled
-        enabled: false, // <--- DISABLED
-        priority: 3,
+        priority: 1,
         available: true,
       },
     };
-
     this.lastError = {};
   }
-
-  // (The rest of the MultiAIService class methods remain the same)
 
   getAvailableProviders() {
     return Object.entries(this.providers)
@@ -50,12 +30,10 @@ class MultiAIService {
 
   markProviderUnavailable(provider, duration = 300000) {
     if (!this.providers[provider]) return;
-
     console.warn(
       `⚠️ Provider ${this.providers[provider].name} marked unavailable`
     );
     this.providers[provider].available = false;
-
     setTimeout(() => {
       if (this.providers[provider]) {
         this.providers[provider].available = true;
@@ -64,11 +42,143 @@ class MultiAIService {
     }, duration);
   }
 
+  // ========== NEW METHOD: FINAL COMPREHENSIVE SUMMARIZATION ==========
+  async generateFinalSummary(fullTranscript, category) {
+    console.log("\n🔍 ============ GENERATE FINAL SUMMARY ============");
+    console.log("Transcript length:", fullTranscript.length);
+    console.log("Category:", category);
+
+    const providers = this.getAvailableProviders();
+    console.log("Available providers:", providers);
+
+    if (providers.length === 0) {
+      console.error("❌ No AI providers available");
+      throw new Error("No AI providers available for summarization");
+    }
+
+    const prompt = `You are a Filipino legal expert and paralegal assistant.  
+Your job is to analyze the user's situation and produce a clear, structured consultation summary.
+
+CONVERSATION TRANSCRIPT:
+${fullTranscript}
+
+LEGAL CATEGORY: ${category}
+
+Always include the following sections:
+
+1. SITUATION SUMMARY  
+   - Rewrite the user's story clearly and neutrally.  
+   - Avoid legal conclusions unless obvious from facts.
+
+2. RELEVANT PHILIPPINE LAWS  
+   - List only applicable statutes, rules, and government regulations.  
+   - Use layman explanations.
+
+3. RECOMMENDED STEPS (VERY IMPORTANT)  
+   - List practical steps the user must take next.  
+   - Include both legal actions and safety precautions.  
+   - Make the steps simple, numbered, and beginner-friendly.
+
+4. WHAT TO WATCH OUT FOR (RED FLAGS)  
+   - Add a warning list.  
+   - Identify risks, illegal behavior, signs of escalation, or deadlines (ex: prescription periods).
+
+5. IMPORTANT CONTACTS & HOTLINES  
+   Include at least the relevant ones below:  
+   - **PNP**: 911 (emergency), 8888 (non-emergency reporting)  
+   - **Barangay**: Local barangay hall hotline  
+   - **PAO (Public Attorney's Office)**: (02) 8426-2075 / nearest district office  
+   - **DSWD**: 1343 Actionline  
+   - **NBI**: (02) 8523-8231  
+   - **PWC or VAWC Desk** for abuse cases  
+   - **Cybercrime Hotlines** for online threats: (02) 723-0401 local 7483
+
+6. NEXT ACTION (URGENT)  
+   - One clear, prioritized task they must do immediately.
+
+FORMAT THE OUTPUT AS A JSON OBJECT:
+{
+  "situation": "",
+  "relevantLaws": [],
+  "recommendedSteps": [],
+  "watchOutFor": [],
+  "contacts": {},
+  "nextAction": ""
+}
+
+Your tone must be:  
+- Professional  
+- Calm  
+- Lawyer-like  
+- Supportive but factual  
+- Never give false certainty
+
+Respond ONLY with valid JSON, no markdown or explanation.`;
+
+    console.log("📤 Prompt prepared, length:", prompt.length);
+
+    for (const provider of providers) {
+      try {
+        console.log(`🤖 Attempting with ${this.providers[provider].name}...`);
+
+        if (provider === "groq") {
+          console.log("🔄 Calling Groq API...");
+
+          const response =
+            await this.providers.groq.client.chat.completions.create({
+              model: "llama-3.3-70b-versatile", // Updated to newer model
+              messages: [{ role: "user", content: prompt }],
+              temperature: 0.7,
+              max_tokens: 3000,
+              response_format: { type: "json_object" },
+            });
+
+          console.log("📥 Groq API responded");
+
+          const text = response.choices[0].message.content;
+          console.log("📝 Raw response length:", text.length);
+          console.log("📝 First 200 chars:", text.substring(0, 200));
+
+          const summary = this._extractJSON(text);
+          console.log("✅ JSON parsed successfully");
+          console.log("📋 Summary fields:", Object.keys(summary));
+
+          return summary;
+        }
+      } catch (error) {
+        console.error(`❌ ${this.providers[provider].name} failed:`);
+        console.error("Error message:", error.message);
+        console.error("Error type:", error.constructor.name);
+        console.error("Full error:", error);
+
+        this.lastError[provider] = error.message;
+
+        if (this._isBalanceError(error)) {
+          console.warn("💰 Balance/quota issue detected");
+          this.markProviderUnavailable(provider, 3600000);
+        } else {
+          console.warn("⏱️ Temporary failure, will retry");
+          this.markProviderUnavailable(provider, 60000);
+        }
+        continue;
+      }
+    }
+
+    console.error("❌ All providers exhausted");
+    throw new Error(
+      `Failed to generate summary with all providers. Last errors: ${JSON.stringify(
+        this.lastError
+      )}`
+    );
+  }
+  // ====================================================================
+
+  // EXISTING METHOD: Quick in-call analysis
   async analyzeLegalSituation(transcript, category) {
     const providers = this.getAvailableProviders();
 
     if (providers.length === 0) {
-      throw new Error("No AI providers available. Please check API keys.");
+      throw new Error("No AI providers available");
     }
 
     for (const provider of providers) {
@@ -89,51 +199,35 @@ class MultiAIService {
         this.lastError[provider] = error.message;
 
         if (this._isBalanceError(error)) {
-          console.warn(
-            `💰 ${this.providers[provider].name} has insufficient balance`
-          );
           this.markProviderUnavailable(provider, 3600000);
         } else {
           this.markProviderUnavailable(provider, 60000);
         }
-
         continue;
       }
     }
 
-    throw new Error(
-      `All AI providers failed. Last errors: ${JSON.stringify(this.lastError)}`
-    );
+    throw new Error(`All AI providers failed`);
   }
 
   async generateResponse(userMessage, context) {
     const providers = this.getAvailableProviders();
 
-    console.log("📋 Available providers:", providers);
-
     if (providers.length === 0) {
-      console.error("❌ NO PROVIDERS AVAILABLE");
       return "Pasensya na, walang available na AI service. Please check your API keys.";
     }
 
     for (const provider of providers) {
       try {
         console.log(`🤖 Trying ${this.providers[provider].name} for chat...`);
-
         const result = await this._generateResponseWithProvider(
           provider,
           userMessage,
           context
         );
 
-        console.log(`✅ Success with ${this.providers[provider].name}`);
-        console.log(`📝 Response: "${result?.substring(0, 100)}..."`);
-
-        // Validate result
         if (!result || typeof result !== "string") {
-          throw new Error(
-            `Invalid response from ${provider}: ${typeof result}`
-          );
+          throw new Error(`Invalid response from ${provider}`);
         }
 
         return result;
@@ -142,32 +236,18 @@ class MultiAIService {
           `❌ ${this.providers[provider].name} failed:`,
           error.message
         );
-        console.error("Stack trace:", error.stack);
-
         this.lastError[provider] = error.message;
 
         if (this._isBalanceError(error)) {
-          console.warn(
-            `💰 ${this.providers[provider].name} has insufficient balance`
-          );
           this.markProviderUnavailable(provider, 3600000);
         } else {
-          console.warn(
-            `⏱️ Temporarily disabling ${this.providers[provider].name}`
-          );
           this.markProviderUnavailable(provider, 60000);
         }
-
-        // Continue to next provider
         continue;
       }
     }
 
-    // All providers failed
-    console.error("❌ ALL PROVIDERS FAILED");
-    console.error("Last errors:", JSON.stringify(this.lastError, null, 2));
-
-    return "Pasensya na, lahat ng AI providers ay hindi available sa ngayon. Please try again later.";
+    return "Pasensya na, lahat ng AI providers ay hindi available sa ngayon.";
   }
 
   _isBalanceError(error) {
@@ -178,101 +258,85 @@ class MultiAIService {
       errorMessage.includes("insufficient") ||
       errorMessage.includes("quota") ||
       errorMessage.includes("balance") ||
-      errorMessage.includes("billing") ||
-      errorMessage.includes("limit exceeded") ||
       errorCode === 429 ||
-      errorCode === 402 ||
-      errorCode === "insufficient_quota"
+      errorCode === 402
     );
   }
 
-  // --- Only GROQ implementation needs to be defined for the switch ---
   async _analyzeLegalWithProvider(provider, transcript, category) {
-    const prompt = `You are a Filipino legal advisor AI. Analyze this ${category} legal situation from the conversation transcript.
+    const prompt = `You are a Filipino legal advisor AI. Analyze this ${category} legal situation briefly.
 
-Transcript:
-${transcript}
+Transcript: ${transcript}
 
-Provide a structured response in JSON format with:
-1. situation: Brief summary of the legal issue
-2. relevantLaws: Array of Philippine laws/articles that apply
-3. recommendedSteps: Array of specific actionable steps (3-5 steps)
-4. contacts: Object with relevant Philippine government contacts (barangay, DOLE, PAO, etc.)
-5. nextAction: Most urgent next step with timeline
+Provide JSON with:
+1. situation: Brief summary
+2. relevantLaws: Array of Philippine laws
+3. recommendedSteps: Array of 3-5 actionable steps
+4. contacts: Object with government contacts
+5. nextAction: Most urgent step
 
-Consider Philippine law context: Civil Code, Labor Code, Barangay Justice System (Katarungang Pambarangay), RA 9653 (Rent Control Act), and other relevant laws.
-
-Respond ONLY with valid JSON, no markdown or explanation.`;
+Respond ONLY with valid JSON.`;
 
     if (provider === "groq") {
-      return await this._analyzeWithGroq(prompt);
+      const response = await this.providers.groq.client.chat.completions.create(
+        {
+          model: "llama-3.3-70b-versatile", // Updated to newer model
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.7,
+          max_tokens: 2000,
+          response_format: { type: "json_object" },
+        }
+      );
+      return this._extractJSON(response.choices[0].message.content);
     }
-    // Fallback if somehow a disabled provider is called
+
     throw new Error(`Provider not configured: ${provider}`);
   }
 
   async _generateResponseWithProvider(provider, userMessage, context) {
-    const prompt = `You are a highly competent Filipino legal advisor speaking in a VOICE CONVERSATION.
-
-IMPORTANT INSTRUCTIONS:
+    const prompt = `You are a Filipino legal advisor in a VOICE CONVERSATION.
 
 Respond in 2–3 short sentences only (maximum 30 words total).
-
 Use fluent Filipino with natural Taglish when appropriate.
-
-Maintain a calm, professional, lawyer-like tone.
-
-Be conversational, as if speaking on the phone.
-
+Be conversational and professional like a lawyer on the phone.
 Ask a brief follow-up question to clarify the legal situation.
 
-Keep responses concise for voice output.
-
 Context: ${context}
-User just said: ${userMessage}
+User: ${userMessage}
 
-Respond naturally as if you’re a seasoned Filipino lawyer giving initial legal guidance.`;
+Respond naturally:`;
 
     if (provider === "groq") {
-      return await this._chatWithGroq(prompt);
+      const response = await this.providers.groq.client.chat.completions.create(
+        {
+          model: "llama-3.3-70b-versatile", // Updated to newer model (faster for chat)
+          messages: [{ role: "user", content: prompt }],
+          temperature: 0.7,
+          max_tokens: 300,
+        }
+      );
+      return response.choices[0].message.content;
     }
-    // Fallback if somehow a disabled provider is called
+
     throw new Error(`Provider not configured: ${provider}`);
   }
 
-  // Groq Implementation (using Llama 3)
-  async _analyzeWithGroq(prompt) {
-    const response = await this.providers.groq.client.chat.completions.create({
-      model: "llama-3.1-70b-versatile", // Use a powerful Groq model for analysis
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
-      max_tokens: 2000,
-      response_format: { type: "json_object" }, // Request JSON output
-    });
-    const text = response.choices[0].message.content;
-    return this._extractJSON(text);
-  }
-
-  async _chatWithGroq(prompt) {
-    const response = await this.providers.groq.client.chat.completions.create({
-      model: "llama-3.1-8b-instant", // Use a fast Groq model for chat
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
-      max_tokens: 300,
-    });
-    return response.choices[0].message.content;
-  }
-
-  // (The rest of the helper functions: _extractJSON, getProviderStatus)
-
   _extractJSON(text) {
     try {
-      return JSON.parse(text);
+      const parsed = JSON.parse(text);
+
+      // Normalize the nextAction field if it's an object
+      if (parsed.nextAction && typeof parsed.nextAction === "object") {
+        parsed.nextAction =
+          parsed.nextAction.step ||
+          `${parsed.nextAction.step} (Timeline: ${parsed.nextAction.timeline})` ||
+          "Seek legal counsel immediately";
+      }
+
+      return parsed;
     } catch {
       const jsonMatch =
-        text.match(/```json\s*([\s\S]*?)\s*```/) ||
-        text.match(/```\s*([\s\S]*?)\s*```/) ||
-        text.match(/\{[\s\S]*\}/);
+        text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/\{[\s\S]*\}/);
 
       if (jsonMatch) {
         try {
@@ -280,24 +344,40 @@ Respond naturally as if you’re a seasoned Filipino lawyer giving initial legal
           const cleanText = contentToParse
             .replace(/^```json\s*|```\s*$/g, "")
             .trim();
-          return JSON.parse(cleanText);
+          const parsed = JSON.parse(cleanText);
+
+          // Normalize the nextAction field
+          if (parsed.nextAction && typeof parsed.nextAction === "object") {
+            parsed.nextAction =
+              parsed.nextAction.step ||
+              `${parsed.nextAction.step} (Timeline: ${parsed.nextAction.timeline})` ||
+              "Seek legal counsel immediately";
+          }
+
+          return parsed;
         } catch (e) {
-          console.error("JSON parse error on extracted text:", e);
+          console.error("JSON parse error:", e);
         }
       }
 
+      // Enhanced fallback with watchOutFor field
       return {
         situation: "Unable to analyze situation automatically",
         relevantLaws: ["Please consult with a legal professional"],
         recommendedSteps: [
-          "Contact PAO (Public Attorney's Office) at 929-9436",
+          "Contact PAO (Public Attorney's Office) at (02) 8426-2075",
           "Visit your local barangay hall",
           "Gather all relevant documents",
         ],
+        watchOutFor: [
+          "Ensure all claims are documented with evidence",
+          "Be aware of prescription periods for filing cases",
+        ],
         contacts: {
-          pao: "PAO Hotline: 929-9436",
+          pao: "PAO: (02) 8426-2075",
           barangay: "Local Barangay Hall",
-          dole: "DOLE Hotline: 1349",
+          pnp: "PNP Emergency: 911",
+          dswd: "DSWD Hotline: 1343",
         },
         nextAction: "Seek immediate legal counsel from PAO",
       };

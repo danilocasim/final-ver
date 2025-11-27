@@ -299,29 +299,6 @@
       </div>
     </div>
 
-    <!-- DEBUG OVERLAY -->
-    <div
-      id="debugOverlay"
-      style="
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        background: rgba(0, 0, 0, 0.8);
-        color: lime;
-        padding: 10px;
-        border-radius: 5px;
-        font-family: monospace;
-        font-size: 11px;
-        max-width: 300px;
-        max-height: 200px;
-        overflow-y: auto;
-        z-index: 9999;
-      "
-    >
-      <strong>🐛 DEBUG LOG:</strong>
-      <div id="debugLog"></div>
-    </div>
-
     <script>
       // ===== GLOBAL VARIABLES =====
       const sessionId = "<%= session.sessionId %>";
@@ -340,36 +317,7 @@
       const callStatus = document.getElementById("callStatus");
       const listeningIndicator = document.getElementById("listeningIndicator");
 
-      // Speech Synthesis
       const synth = window.speechSynthesis;
-
-      // ===== DEBUG LOGGER =====
-      const debugLog = document.getElementById("debugLog");
-      const originalConsoleLog = console.log;
-      const originalConsoleError = console.error;
-
-      function addDebugLine(type, ...args) {
-        const line = document.createElement("div");
-        line.style.color = type === "error" ? "#ff4444" : "lime";
-        line.textContent = `[${new Date().toLocaleTimeString()}] ${args.join(
-          " "
-        )}`;
-        debugLog.appendChild(line);
-        debugLog.scrollTop = debugLog.scrollHeight;
-        while (debugLog.children.length > 20) {
-          debugLog.removeChild(debugLog.firstChild);
-        }
-      }
-
-      console.log = function (...args) {
-        originalConsoleLog.apply(console, args);
-        addDebugLine("log", ...args);
-      };
-
-      console.error = function (...args) {
-        originalConsoleError.apply(console, args);
-        addDebugLine("error", ...args);
-      };
 
       // ===== SPEECH RECOGNITION SETUP =====
       const SpeechRecognition =
@@ -755,20 +703,83 @@
         contactsDiv.innerHTML = html;
       }
 
-      // ===== END CALL =====
+      // ===== END CALL WITH SUMMARIZATION =====
       async function endCall() {
+        console.log("📞 Ending call and generating comprehensive summary...");
+
+        // Disable button to prevent multiple clicks
+        const endBtn = event.target;
+        endBtn.disabled = true;
+        endBtn.textContent = "⏳ Processing...";
+
+        // Stop all audio/recognition
         synth.cancel();
-        recognition.stop();
+        if (isRecognizing) {
+          recognition.stop();
+        }
         if (localAudioTrack) localAudioTrack.close();
         if (rtcClient) await rtcClient.leave();
 
-        await fetch("/api/session/end", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sessionId }),
-        });
+        // Show loading state
+        callStatus.textContent =
+          "Generating your comprehensive consultation summary...";
+        micBtn.disabled = true;
+        micBtn.textContent = "⏳ Processing...";
 
-        window.location.href = `/summary/${sessionId}`;
+        try {
+          // First, end the session
+          await fetch("/api/session/end", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId }),
+          });
+
+          // Then generate final comprehensive summary and WAIT for it
+          console.log("📋 Calling final summarization endpoint...");
+          callStatus.textContent = "AI is analyzing your conversation...";
+
+          const summaryResponse = await fetch("/api/session/summarize", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId }),
+          });
+
+          if (!summaryResponse.ok) {
+            const errorText = await summaryResponse.text();
+            console.error("Summarization error response:", errorText);
+            throw new Error(`Summarization failed: ${summaryResponse.status}`);
+          }
+
+          const summaryData = await summaryResponse.json();
+          console.log("✅ Comprehensive summary generated:", summaryData);
+
+          callStatus.textContent = "Summary complete! Redirecting...";
+
+          // Small delay to show success message
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          // Now redirect to summary page
+          window.location.href = `/summary/${sessionId}`;
+        } catch (error) {
+          console.error("❌ Summarization error:", error);
+          callStatus.textContent = "Error generating summary";
+
+          // Show error but still allow redirect
+          const shouldContinue = confirm(
+            "Failed to generate comprehensive summary. Would you like to see what was captured anyway?"
+          );
+
+          if (shouldContinue) {
+            window.location.href = `/summary/${sessionId}`;
+          } else {
+            // Re-enable button
+            endBtn.disabled = false;
+            endBtn.textContent = "📞 End Call & Generate Report";
+            micBtn.disabled = false;
+            micBtn.textContent = "🔇 Microphone Off";
+            callStatus.textContent = "Ready to continue or try ending again";
+          }
+        }
       }
 
       // ===== LOAD VOICES =====
