@@ -730,5 +730,12 @@
     "category": "WORKPLACE",
     "status": "ACTIVE",
     "startTime": 1764252641485
+  },
+  {
+    "sessionId": "e8496c9b-9a44-4558-bc44-f4a4f7d8d869",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764253479421,
+    "endTime": 1764256035969
   }
 ]

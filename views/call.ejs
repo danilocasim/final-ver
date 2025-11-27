@@ -1,116 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voice Legal Consultation</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voice Legal Consultation</title>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.21.0.js"></script>
 
-  <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.21.0.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="transcript.css" />
+    <style>
+      .listening-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease;
+      }
 
-  <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="transcript.css">
-</head>
+      .listening-indicator.show {
+        opacity: 1;
+        height: auto;
+      }
 
+      .voice-wave {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 28px;
+        margin-bottom: 4px;
+      }
 
-<body>
+      .voice-wave span {
+        width: 4px;
+        height: 6px;
+        background: #3b82f6;
+        border-radius: 4px;
+        display: inline-block;
+        animation: wave 1s infinite ease-in-out;
+      }
+
+      .voice-wave span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .voice-wave span:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .voice-wave span:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .voice-wave span:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      .voice-wave span:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes wave {
+        0%,
+        100% {
+          height: 6px;
+        }
+        50% {
+          height: 28px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
     <%- include("partials/navbar") %>
-   <div class="bg-gray-50 p-5">
-     
-<div class="call-container mt-5 max-w-7xl mx-auto px-4">
-  <div class="flex flex-col lg:flex-row lg:space-x-6">
-    
-    <!-- Main Panel -->
-    <div class="flex-1 bg-white rounded-xl shadow-sm p-6">
-      <!-- Header -->
-      <div class="mb-6">
-        <h1 class="text-3xl font-bold text-gray-800 mb-3">Live Call</h1>
-        <div class="flex items-center gap-3">
-          <div class="status">
-            <span class="inline-flex items-center mb-3 gap-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <div class="status-dot" id="statusDot"></div>
-              <span id="callStatus">Connecting to Agora...</span>
-            </span>
-            <div class="category-badge text-gray-600 font-medium"><%= session.category %></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Call Status Card -->
-      <div class="bg-white rounded-lg shadow-sm p-12 mb-6 text-center">
-        <div class="flex flex-col items-center">
-          <div class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-            </svg>
-          </div>
-          <h2 class="text-2xl font-bold text-gray-800 mb-2">AI Legal Assistant</h2>
-          <div class="listening-indicator" id="listeningIndicator">
-            <div class="voice-wave">
-              <span></span><span></span><span></span><span></span><span></span>
+    <div class="bg-gray-50 p-5">
+      <div class="call-container mt-5 max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row lg:space-x-6">
+          <!-- Main Panel -->
+          <div class="flex-1 bg-white rounded-xl shadow-sm p-6">
+            <!-- Header -->
+            <div class="mb-6">
+              <h1 class="text-3xl font-bold text-gray-800 mb-3">Live Call</h1>
+              <div class="flex items-center gap-3">
+                <div class="status">
+                  <span
+                    class="inline-flex items-center mb-3 gap-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    <span class="w-2 h-2 bg-white rounded-full"></span>
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="callStatus">Connecting to Agora...</span>
+                  </span>
+                  <div class="category-badge text-gray-600 font-medium">
+                    <%= session.category %>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p>Listening to you...</p>
-          </div>
 
-          <!-- Controls -->
-          <div class="flex flex-row items-center mt-4">
-            <button class="control-btn mic-btn muted bg-yellow-500 mr-5 hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors" id="micBtn" onclick="toggleMic()" disabled>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg> microphone off
-            </button>
-            <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors control-btn end-btn" onclick="endCall()">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg> End Call & Get Summary
-            </button>
-          </div>
-        </div>
-      </div>
+            <!-- Call Status Card -->
+            <div class="bg-white rounded-lg shadow-sm p-12 mb-6 text-center">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center mb-4"
+                >
+                  <svg
+                    class="w-12 h-12 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                  AI Legal Assistant
+                </h2>
+                <div class="listening-indicator" id="listeningIndicator">
+                  <div class="voice-wave">
+                    <span></span><span></span><span></span><span></span
+                    ><span></span>
+                  </div>
+                  <p>Listening to you...</p>
+                </div>
 
-      <!-- Live Transcript -->
-      <div class="bg-[#F1F5F9] rounded-xl p-6 min-h-[400px]">
-        <h3 class="text-xl font-bold text-gray-800 mb-1">Live Transcript</h3>
-        <p class="text-gray-500 text-sm mb-6">Real-time conversation</p>
-        <div class="space-y-4 max-w-xl mx-auto">
-          <!-- AI Message -->
-          <div class="flex items-start space-x-2">
-            <div class="speaker-label font-semibold text-sm text-gray-600">AI Legal Buddy</div>
-            <div class="bg-blue-500 text-white p-3 rounded-lg max-w-xs">
-              "Hello I'm your AI legal buddy for BARANGAY Issues. Please tell me what happened."
+                <!-- Controls -->
+                <div class="flex flex-row items-center mt-4">
+                  <button
+                    class="control-btn mic-btn muted bg-yellow-500 mr-5 hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors"
+                    id="micBtn"
+                    onclick="toggleMic()"
+                    disabled
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      ></path>
+                    </svg>
+                    microphone off
+                  </button>
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors control-btn end-btn"
+                    onclick="endCall()"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      ></path>
+                    </svg>
+                    End Call & Get Summary
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Transcript -->
+            <div class="bg-[#F1F5F9] rounded-xl p-6 min-h-[400px]">
+              <h3 class="text-xl font-bold text-gray-800 mb-1">
+                Live Transcript
+              </h3>
+              <p class="text-gray-500 text-sm mb-6">Real-time conversation</p>
+              <div class="space-y-4 max-w-xl mx-auto">
+                <div
+                  class="transcript-box flex flex-col items-start space-x-2"
+                  id="transcript"
+                ></div>
+              </div>
             </div>
           </div>
 
-          <!-- User Message -->
-          <div class="flex items-start justify-end space-x-2">
-            <div class="bg-gray-300 text-gray-800 p-3 rounded-lg max-w-xs text-right">
-              "HELLO HELLO HELLO"
+          <!-- Sidebar -->
+          <div
+            class="w-full lg:w-1/4 bg-white rounded-xl shadow-sm p-6 mt-6 lg:mt-0"
+          >
+            <h3 class="text-lg font-bold mb-3">📋 Action Steps</h3>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2">
+                <input type="checkbox" class="w-4 h-4" /> Connecting to voice
+                service...
+              </li>
+            </ul>
+            <h3 class="text-lg font-bold mt-6 mb-2">📞 Important Contacts</h3>
+            <div class="text-sm space-y-1">
+              <p><strong>PAO:</strong> 929-9436</p>
+              <p><strong>DOLE:</strong> 1349</p>
+              <p><strong>Barangay:</strong> Local directory</p>
             </div>
-            <div class="speaker-label font-semibold text-sm text-gray-600">You</div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Sidebar -->
-    <div class="w-full lg:w-1/4 bg-white rounded-xl shadow-sm p-6 mt-6 lg:mt-0">
-      <h3 class="text-lg font-bold mb-3">📋 Action Steps</h3>
-      <ul class="space-y-2">
-        <li class="flex items-center gap-2">
-          <input type="checkbox" class="w-4 h-4" /> Connecting to voice service...
-        </li>
-      </ul>
-      <h3 class="text-lg font-bold mt-6 mb-2">📞 Important Contacts</h3>
-      <div class="text-sm space-y-1">
-        <p><strong>PAO:</strong> 929-9436</p>
-        <p><strong>DOLE:</strong> 1349</p>
-        <p><strong>Barangay:</strong> Local directory</p>
-      </div>
-    </div>
-  </div>
-</div>
-   </div>
 
     <script>
       // ===== GLOBAL VARIABLES =====
@@ -129,9 +228,12 @@
       const listeningIndicator = document.getElementById("listeningIndicator");
       const synth = window.speechSynthesis;
       // ===== SPEECH RECOGNITION SETUP =====
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        alert("⚠️ Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari.");
+        alert(
+          "⚠️ Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari."
+        );
       }
       const recognition = new SpeechRecognition();
       recognition.lang = "en-US";
@@ -161,10 +263,12 @@
             errorMessage = "No speech detected. Please try again.";
             break;
           case "audio-capture":
-            errorMessage = "Microphone not accessible. Please check permissions.";
+            errorMessage =
+              "Microphone not accessible. Please check permissions.";
             break;
           case "not-allowed":
-            errorMessage = "Microphone access denied. Please allow microphone access in browser settings.";
+            errorMessage =
+              "Microphone access denied. Please allow microphone access in browser settings.";
             break;
           case "network":
             errorMessage = "Network error. Please check your connection.";
@@ -195,20 +299,25 @@
           const tokenResponse = await fetch("/api/agora/token", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               channelName,
-              uid: 0
+              uid: 0,
             }),
           });
           const tokenData = await tokenResponse.json();
           console.log("✅ Got Agora token");
           rtcClient = AgoraRTC.createClient({
             mode: "rtc",
-            codec: "vp8"
+            codec: "vp8",
           });
-          await rtcClient.join(tokenData.appId, channelName, tokenData.rtcToken, 0);
+          await rtcClient.join(
+            tokenData.appId,
+            channelName,
+            tokenData.rtcToken,
+            0
+          );
           console.log("✅ Joined Agora channel");
           localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
           await localAudioTrack.setMuted(true);
@@ -218,7 +327,7 @@
           micBtn.disabled = false;
           statusDot.classList.add("listening");
           setTimeout(() => {
-            const greeting = `Hello! I'm your AI Legal Buddy for <%= session.category %> issues. Please tell me what happened.`;
+            const greeting = `Hello! I'm JustiFi AI for <%= session.category %> issues. Please tell me what happened.`;
             addTranscript("AI", greeting);
             speak(greeting);
           }, 1000);
@@ -226,28 +335,31 @@
         } catch (error) {
           console.error("❌ Agora initialization error:", error);
           callStatus.textContent = "Connection failed - Check console";
-          alert("Failed to connect to voice service. Please check your microphone permissions and try again.");
+          alert(
+            "Failed to connect to voice service. Please check your microphone permissions and try again."
+          );
         }
       }
       // ===== MIC CONTROLS =====
       async function toggleMic() {
-        if (isAISpeaking) {
-          console.log("⚠️ Cannot toggle mic - AI is speaking");
-          return;
-        }
+        if (isAISpeaking) return;
+
         if (isMuted) {
           try {
             await localAudioTrack.setMuted(false);
             isMuted = false;
             isRecognizing = true;
+
             micBtn.classList.remove("muted");
             micBtn.classList.add("listening");
             micBtn.textContent = "🎤 Listening...";
+
             statusDot.classList.add("listening");
             callStatus.textContent = "Listening to you - Speak now!";
+
             listeningIndicator.classList.add("show");
+
             recognition.start();
-            console.log("✅ Speech recognition started");
           } catch (error) {
             console.error("❌ Failed to start recognition:", error);
             alert("Failed to start speech recognition. Please try again.");
@@ -259,19 +371,19 @@
       }
 
       function stopListening() {
-        if (isRecognizing) {
-          recognition.stop();
-          isRecognizing = false;
-        }
-        if (!isMuted) {
-          localAudioTrack.setMuted(true);
-          isMuted = true;
-        }
+        if (isRecognizing) recognition.stop();
+        isRecognizing = false;
+
+        if (!isMuted) localAudioTrack.setMuted(true);
+        isMuted = true;
+
         micBtn.classList.add("muted");
         micBtn.classList.remove("listening");
         micBtn.textContent = "🔇 Microphone Off";
+
         statusDot.classList.remove("listening");
         callStatus.textContent = "Ready to talk";
+
         listeningIndicator.classList.remove("show");
       }
 
@@ -308,18 +420,20 @@
           const response = await fetch("/api/ai/chat", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               message: userMessage,
-              context
+              context,
             }),
           });
           if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
           }
           const data = await response.json();
-          const aiMessage = data.response || "Sorry, I did not understand. Can you please repeat?";
+          const aiMessage =
+            data.response ||
+            "Sorry, I did not understand. Can you please repeat?";
           console.log("📥 AI Response:", aiMessage);
           addTranscript("AI", aiMessage);
           await saveTranscript("AI", aiMessage);
@@ -342,8 +456,10 @@
         utterance.rate = 1.0;
         utterance.pitch = 1.0;
         const voices = synth.getVoices();
-        const preferredVoice = voices.find(
-          (v) => v.lang.startsWith("en") && v.name.includes("Female")) || voices[0];
+        const preferredVoice =
+          voices.find(
+            (v) => v.lang.startsWith("en") && v.name.includes("Female")
+          ) || voices[0];
         if (preferredVoice) {
           utterance.voice = preferredVoice;
         }
@@ -374,39 +490,62 @@
         synth.speak(utterance);
       }
 
+      //     ===== TRANSCRIPT FUNCTIONS =====
+      function addTranscript(speaker, text) {
+        const transcriptBox = document.getElementById("transcript");
 
- //     ===== TRANSCRIPT FUNCTIONS =====
-      function addtranscript(speaker, text) {
-        const transcriptbox = document.getelementbyid("transcript");
-        if (transcriptbox.queryselector('p[style*="opacity: 0.6"]')) {
-          transcriptbox.innerhtml = "";
+        // Clear placeholder text
+        if (transcriptBox.querySelector('p[style*="opacity: 0.6"]')) {
+          transcriptBox.innerHTML = "";
         }
-        const item = document.createelement("div");
-        item.classname = `transcript-item ${speaker.tolowercase()}`;
-        item.innerhtml = `
-          <div class="speaker-label">${
-            speaker === "user" ? "you" : "ai legal buddy"
-          }</div>
-          <div>${text}</div>
-        `;
-        transcriptbox.appendchild(item);
-        transcriptbox.scrolltop = transcriptbox.scrollheight;
-        conversationhistory.push({
+
+        const item = document.createElement("div");
+        item.className = `
+  transcript-item 
+  flex 
+  w-full 
+  mb-2
+  ${speaker === "USER" ? "justify-end" : "justify-start"}
+`;
+
+        item.innerHTML = `
+  <div class="flex flex-col max-w-xs">
+    <div class="speaker-label text-xs font-semibold mb-1 ${
+      speaker === "USER" ? "text-right" : "text-left"
+    }">
+      ${speaker === "USER" ? "You" : "JustiFi AI"}
+    </div>
+
+    <div class="${
+      speaker === "USER"
+        ? "bg-blue-500 text-white"
+        : "bg-gray-200 text-gray-800"
+    } p-3 rounded-lg text-sm">
+      ${text}
+    </div>
+  </div>
+`;
+
+        transcriptBox.appendChild(item);
+        transcriptBox.scrollTop = transcriptBox.scrollHeight;
+
+        conversationHistory.push({
           speaker,
-          text
+          text,
         });
       }
+
       async function saveTranscript(speaker, text) {
         try {
           await fetch("/api/transcript/save", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               sessionId,
               speaker,
-              text
+              text,
             }),
           });
         } catch (error) {
@@ -417,13 +556,16 @@
       async function processWithAI() {
         isProcessing = true;
         const stepsList = document.getElementById("stepsList");
-        stepsList.innerHTML = '<li class="step-item">Analyzing conversation...</li>';
-        const fullTranscript = conversationHistory.map((t) => `${t.speaker}: ${t.text}`).join("\n");
+        stepsList.innerHTML =
+          '<li class="step-item">Analyzing conversation...</li>';
+        const fullTranscript = conversationHistory
+          .map((t) => `${t.speaker}: ${t.text}`)
+          .join("\n");
         try {
           const response = await fetch("/api/ai/process", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               sessionId,
@@ -436,14 +578,17 @@
           updateContacts(summary);
         } catch (error) {
           console.error("AI processing error:", error);
-          stepsList.innerHTML = '<li class="step-item">Continue conversation for guidance...</li>';
+          stepsList.innerHTML =
+            '<li class="step-item">Continue conversation for guidance...</li>';
         }
       }
 
       function updateActionSteps(summary) {
         const stepsList = document.getElementById("stepsList");
         stepsList.innerHTML = "";
-        const steps = summary.recommendedSteps || ["Continue talking to get personalized steps", ];
+        const steps = summary.recommendedSteps || [
+          "Continue talking to get personalized steps",
+        ];
         steps.forEach((step) => {
           const li = document.createElement("li");
           li.className = "step-item";
@@ -480,7 +625,8 @@
         if (localAudioTrack) localAudioTrack.close();
         if (rtcClient) await rtcClient.leave();
         // Show loading state
-        callStatus.textContent = "Generating your comprehensive consultation summary...";
+        callStatus.textContent =
+          "Generating your comprehensive consultation summary...";
         micBtn.disabled = true;
         micBtn.textContent = "⏳ Processing...";
         try {
@@ -488,10 +634,10 @@
           await fetch("/api/session/end", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              sessionId
+              sessionId,
             }),
           });
           // Then generate final comprehensive summary and WAIT for it
@@ -500,10 +646,10 @@
           const summaryResponse = await fetch("/api/session/summarize", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              sessionId
+              sessionId,
             }),
           });
           if (!summaryResponse.ok) {
@@ -522,7 +668,9 @@
           console.error("❌ Summarization error:", error);
           callStatus.textContent = "Error generating summary";
           // Show error but still allow redirect
-          const shouldContinue = confirm("Failed to generate comprehensive summary. Would you like to see what was captured anyway?");
+          const shouldContinue = confirm(
+            "Failed to generate comprehensive summary. Would you like to see what was captured anyway?"
+          );
           if (shouldContinue) {
             window.location.href = `/summary/${sessionId}`;
           } else {
@@ -547,5 +695,4 @@
       });
     </script>
   </body>
-
 </html>
