@@ -1132,5 +1132,293 @@
     "speaker": "AI",
     "text": "Paano mo gustong gawin tungkol sa overtime pay mo?",
     "timestamp": 1764241827499
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "USER",
+    "text": "so i was kicked out at my house and my landers said that i'm not being rent but i am paying",
+    "timestamp": 1764242286966
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "AI",
+    "text": "Ano ang nangyari sa kontrata mo?",
+    "timestamp": 1764242287743
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "USER",
+    "text": "hitori into pieces",
+    "timestamp": 1764242294972
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "AI",
+    "text": "Nabali ang kontrata? Ano ang dahilan?",
+    "timestamp": 1764242295660
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "USER",
+    "text": "i don't know it is like just like",
+    "timestamp": 1764242305628
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "AI",
+    "text": "Paano mo nalaman na nabali ang kontrata?",
+    "timestamp": 1764242306287
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "USER",
+    "text": "hindi na bale pero kailangan gusto niya",
+    "timestamp": 1764242313847
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "speaker": "AI",
+    "text": "Ano ang gusto niya?",
+    "timestamp": 1764242314326
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "hello hello hello hello",
+    "timestamp": 1764247689562
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Ano po ang nangyayari? May problema ba sa inyong barangay?",
+    "timestamp": 1764247690394
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "hello",
+    "timestamp": 1764248369196
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Kumusta po? Ano ang nangyayari sa inyo sa barangay ninyo?",
+    "timestamp": 1764248369705
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "hello",
+    "timestamp": 1764248385994
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Ano po ang nangyari? May problema ba sa inyong barangay?",
+    "timestamp": 1764248386861
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "hello",
+    "timestamp": 1764248435352
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Kumusta po? May problema po ba sa barangay ninyo? Ano ang nangyari?",
+    "timestamp": 1764248435827
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "hello my",
+    "timestamp": 1764248453063
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Ano po ang nangyari? May problema ba sa inyong barangay?",
+    "timestamp": 1764248456997
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "may nakauwi kasi ako tapos",
+    "timestamp": 1764248501289
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Ano ang ginawa ng nakauwi sa inyo?",
+    "timestamp": 1764248501848
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "may nakaaway ako",
+    "timestamp": 1764248508591
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Ano ang nangyari sa away ninyo?",
+    "timestamp": 1764248508982
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "kaso nasaksak ko eh",
+    "timestamp": 1764248519226
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Ano ang nangyari sa nasaksak?",
+    "timestamp": 1764248519569
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "may nasaksak ako sa bahay namin",
+    "timestamp": 1764248778202
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "Someone was stabbed at your home. Can you tell me who the victim is?",
+    "timestamp": 1764248778878
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "my cat",
+    "timestamp": 1764248785868
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "I see, your cat was stabbed. Was this an intentional act by someone?",
+    "timestamp": 1764248786328
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "yeah i intentionally kill it",
+    "timestamp": 1764248796726
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "I understand the situation. Was the cat causing harm to someone or something that led to your decision?",
+    "timestamp": 1764248797178
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "no i just want to kill the cat and eat the cat",
+    "timestamp": 1764248810884
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "I strongly advise against such actions. Was the cat a nuisance in your barangay?",
+    "timestamp": 1764248811296
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "no i just want to kill it",
+    "timestamp": 1764248818983
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "I must reiterate that killing an animal without reason is against the law. Did you know that animal cruelty is punishable under the Animal Welfare Act? What motivated you to harm the cat?",
+    "timestamp": 1764248819913
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "USER",
+    "text": "i am satan i'm from devil i'm from hell",
+    "timestamp": 1764248838436
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "speaker": "AI",
+    "text": "I understand you're upset, but harming animals is still illegal. Can you calm down and tell me what's really going on?",
+    "timestamp": 1764248838826
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "speaker": "USER",
+    "text": "hi i need help my company has been making us works 2 hours overtime everyday",
+    "timestamp": 1764248918765
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "speaker": "AI",
+    "text": "I'd be happy to help you with that. Have you been paid for the overtime work?",
+    "timestamp": 1764248919363
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "speaker": "USER",
+    "text": "when i ask about it",
+    "timestamp": 1764248926154
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "speaker": "AI",
+    "text": "Let's review your company's policies. Were you provided a written agreement regarding overtime pay?",
+    "timestamp": 1764248926596
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "speaker": "USER",
+    "text": "so when i ask about it my supervisor told me if you complain your performance score will be affected is that allowed",
+    "timestamp": 1764248939396
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "speaker": "AI",
+    "text": "That sounds like a potential intimidation tactic. Is your company's policy on overtime pay and performance scoring clearly outlined in your employment contract?",
+    "timestamp": 1764248939840
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "speaker": "USER",
+    "text": "so i got kicked out on my work what should i do",
+    "timestamp": 1764249411478
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "speaker": "AI",
+    "text": "It looks like your issue falls under Labor law rather than your selected category. Would you like me to open a new conversation for that topic?",
+    "timestamp": 1764249411521
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "speaker": "USER",
+    "text": "okay",
+    "timestamp": 1764249421452
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "speaker": "AI",
+    "text": "Let's start anew under Labor law. What's the reason given for your termination?",
+    "timestamp": 1764249421981
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "speaker": "USER",
+    "text": "i got fell out like for example",
+    "timestamp": 1764249439172
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "speaker": "AI",
+    "text": "It seems like a dispute with your employer led to your termination. Can you elaborate on the nature of the dispute?",
+    "timestamp": 1764249439579
   }
 ]

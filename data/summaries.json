@@ -336,5 +336,234 @@
     "humanTalkTime": 0,
     "conversationTurns": 0,
     "createdAt": 1764241828575
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "situation": "Tenant was kicked out of the house despite paying rent, with a potentially broken contract",
+    "relevantLaws": [
+      "Republic Act No. 6552 (Rent Control Act of 1972)",
+      "Republic Act No. 10845 (Anti-Discrimination Against Informal Settler Families Act of 2016)",
+      "Presidential Decree No. 1091 (Rent Control Law)"
+    ],
+    "recommendedSteps": [
+      "Gather all relevant documents, including the contract and proof of rent payment",
+      "Seek assistance from the Department of Human Settlements and Urban Development (DHSUD) or the Housing and Land Use Regulatory Board (HLURB)",
+      "Consult with a lawyer to determine the best course of action",
+      "File a complaint with the barangay or local government unit"
+    ],
+    "contacts": {
+      "DHSUD": "(+632) 8536-4017",
+      "HLURB": "(+632) 8536-3591",
+      "Barangay Office": "varies depending on location"
+    },
+    "nextAction": "Gather all relevant documents to establish a strong case",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764242307787
+  },
+  {
+    "sessionId": "123d4031-7392-4799-9fab-f9036d607b30",
+    "situation": "The user was kicked out of their house and is claiming they were paying rent, but the landlord disputes this. The user's contract is unclear, and they are unsure of the reasons behind the dispute.",
+    "relevantLaws": [
+      "The Rent Control Act of 2009 (RA 9653)",
+      "The Civil Code of the Philippines (Republic Act No. 386)",
+      "The Philippine Lease Agreement provisions"
+    ],
+    "recommendedSteps": [
+      1,
+      "Gather all relevant documents, including the contract and proof of rent payments",
+      2,
+      "Seek mediation from the Barangay or a neutral third party to resolve the dispute",
+      3,
+      "Consider consulting with a lawyer or the Public Attorney's Office (PAO) for guidance on tenant rights"
+    ],
+    "watchOutFor": [
+      "The landlord attempting to forcibly evict the user without a court order",
+      "The user being harassed or intimidated by the landlord or their representatives",
+      "The prescription period for filing a case against the landlord"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Contact the Barangay or local authorities to report the incident and seek assistance in resolving the dispute",
+    "totalTranscripts": 8,
+    "createdAt": 1764242318682
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "situation": "A physical or verbal altercation occurred in the barangay involving the user and another individual.",
+    "relevantLaws": [
+      "Republic Act No. 7160 (Local Government Code of 1991)",
+      "Presidential Decree No. 603 (Child and Youth Welfare Code)"
+    ],
+    "recommendedSteps": [
+      "Report the incident to the barangay authorities",
+      "File a complaint at the barangay hall",
+      "Seek mediation from the barangay captain or council"
+    ],
+    "contacts": {
+      "Barangay Hall": "Phone: 123-4567",
+      "Department of Interior and Local Government (DILG)": "Phone: 0917-1234567",
+      "Philippine National Police (PNP)": "Phone: 117 or 0917-722-2511"
+    },
+    "nextAction": "Report the incident to the barangay authorities immediately to prevent further escalation",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764248509924
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "situation": "Intentional killing of a cat by the owner at their home",
+    "relevantLaws": [
+      "Animal Welfare Act (RA 8485)",
+      "Revised Penal Code (RA 3815)"
+    ],
+    "recommendedSteps": [
+      "Report the incident to the barangay authorities",
+      "Contact the Philippine Animal Welfare Society (PAWS) for guidance",
+      "Seek advice from a lawyer regarding potential liabilities"
+    ],
+    "contacts": {
+      "Barangay Hall": "Contact your local barangay hall for assistance",
+      "PAWS": "(+632) 475-1688",
+      "Department of Agriculture": "(+632) 927-8230"
+    },
+    "nextAction": "Report the incident to the barangay authorities to determine the necessary procedures and potential consequences",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764248798197
+  },
+  {
+    "sessionId": "e44d431a-549e-4a65-8dda-6229bcd25d19",
+    "situation": "The user reported that they intentionally killed their cat and expressed a desire to eat it, claiming to be motivated by a self-identified association with evil. The incident occurred at the user's home.",
+    "relevantLaws": [
+      "Animal Welfare Act (Republic Act 8485)",
+      "Anti-Cruelty to Animals Law"
+    ],
+    "recommendedSteps": [
+      1,
+      "Seek counseling to address underlying issues",
+      "Report the incident to local authorities if necessary",
+      "Cooperate with investigations if the incident is reported",
+      "Understand the consequences of animal cruelty under Philippine law"
+    ],
+    "watchOutFor": [
+      "Escalation of harmful behavior towards animals or humans",
+      "Signs of mental health issues that may require professional intervention",
+      "Potential legal consequences for animal cruelty"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231",
+      "PWC or VAWC Desk": "for abuse cases",
+      "Cybercrime Hotlines": "(02) 723-0401 local 7483"
+    },
+    "nextAction": "Seek professional help to address the underlying issues that led to the harmful behavior towards the cat",
+    "totalTranscripts": 28,
+    "createdAt": 1764248847947
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "situation": "Employee is being required to work 2 hours of overtime daily without clear payment terms and is being intimidated by supervisor for inquiring about overtime pay",
+    "relevantLaws": [
+      "Labor Code of the Philippines (Presidential Decree No. 442)",
+      "Department of Labor and Employment (DOLE) Department Order No. 198-18 (Implementing Rules and Regulations of the Labor Code)",
+      "Republic Act No. 9481 (Labor Code, Article 82-86, Overtime Pay)"
+    ],
+    "recommendedSteps": [
+      "Review employment contract for overtime pay and performance scoring policies",
+      "Document all instances of overtime work and communication with supervisor regarding overtime pay",
+      "File a complaint with the Department of Labor and Employment (DOLE) for unpaid overtime pay and intimidation"
+    ],
+    "contacts": {
+      "DOLE": "https://www.dole.gov.ph/",
+      "National Labor Relations Commission (NLRC)": "https://www.nlrc.gov.ph/",
+      "Department of Justice (DOJ)": "https://www.doj.gov.ph/"
+    },
+    "nextAction": "Document all instances of overtime work and communication with supervisor regarding overtime pay to prepare for a potential complaint with DOLE",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764248940893
+  },
+  {
+    "sessionId": "f0c43025-9865-420c-9ab0-3bfa0bb5765b",
+    "situation": "The user's company has been requiring them to work 2 hours of overtime every day without clear payment arrangements. When the user inquired about overtime pay, their supervisor implied that complaining could negatively impact their performance score.",
+    "relevantLaws": [
+      "Labor Code of the Philippines (Presidential Decree No. 442)",
+      "Department of Labor and Employment (DOLE) regulations on overtime pay",
+      "Article 82 of the Labor Code (overtime pay)",
+      "Article 287 of the Labor Code (performance evaluation)"
+    ],
+    "recommendedSteps": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "recommendedStepsDetails": {
+      "1": "Review your employment contract and company policies on overtime pay and performance scoring",
+      "2": "Document all instances of overtime work and attempts to discuss payment with your supervisor",
+      "3": "File a complaint with the Department of Labor and Employment (DOLE) or the National Labor Relations Commission (NLRC)",
+      "4": "Seek advice from a labor lawyer or the Public Attorney's Office (PAO)",
+      "5": "Consider reporting the intimidation tactic to the appropriate authorities"
+    },
+    "watchOutFor": [
+      "Intimidation or retaliation from your supervisor or the company",
+      "Missed deadlines for filing complaints or claims",
+      "Lack of transparency in overtime pay and performance scoring policies",
+      "Potential violations of labor laws and regulations"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DOLE": "(02) 527-3000",
+      "NLRC": "(02) 527-2573"
+    },
+    "nextAction": "Document all instances of overtime work and attempts to discuss payment with your supervisor, and review your employment contract and company policies on overtime pay and performance scoring",
+    "totalTranscripts": 6,
+    "createdAt": 1764248951547
+  },
+  {
+    "sessionId": "ccf41e05-a3df-4541-aaa3-d204adca309a",
+    "situation": "Employee terminated due to a dispute with employer",
+    "relevantLaws": [
+      "Labor Code of the Philippines",
+      "Department Order No. 174-17",
+      "Republic Act No. 8042 (Migrant Workers Act)"
+    ],
+    "recommendedSteps": [
+      "File a complaint with the Department of Labor and Employment (DOLE)",
+      "Seek assistance from the National Labor Relations Commission (NLRC)",
+      "Review employment contract for any potential breaches",
+      "Gather evidence to support claim of unfair termination"
+    ],
+    "contacts": {
+      "DOLE": "https://www.dole.gov.ph/",
+      "NLRC": "https://www.nlrc.gov.ph/",
+      "Department of Justice": "https://www.doj.gov.ph/"
+    },
+    "nextAction": "File a complaint with the DOLE to initiate investigation and potential resolution",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764249440351
   }
 ]
