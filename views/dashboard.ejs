@@ -1,428 +1,154 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Filipino Legal Buddy</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        position: relative;
-        overflow-x: hidden;
-      }
-
-      /* Animated background elements */
-      body::before,
-      body::after {
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite ease-in-out;
-      }
-
-      body::before {
-        width: 300px;
-        height: 300px;
-        top: -100px;
-        left: -100px;
-        animation-delay: -5s;
-      }
-
-      body::after {
-        width: 400px;
-        height: 400px;
-        bottom: -150px;
-        right: -150px;
-        animation-delay: -10s;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(30px, -30px) scale(1.1);
-        }
-        66% {
-          transform: translate(-20px, 20px) scale(0.9);
-        }
-      }
-
-      .container {
-        background: white;
-        padding: 2.5rem;
-        border-radius: 24px;
-        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
-        max-width: 520px;
-        width: 100%;
-        position: relative;
-        z-index: 1;
-        animation: slideUp 0.6s ease-out;
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .header {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-
-      .flag {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-        display: inline-block;
-        animation: wave 2s ease-in-out infinite;
-      }
-
-      @keyframes wave {
-        0%,
-        100% {
-          transform: rotate(0deg);
-        }
-        10%,
-        30% {
-          transform: rotate(14deg);
-        }
-        20% {
-          transform: rotate(-8deg);
-        }
-        40%,
-        60% {
-          transform: rotate(0deg);
-        }
-      }
-
-      h1 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 0.5rem;
-        font-size: 2.2rem;
-        font-weight: 700;
-      }
-
-      .tagline {
-        color: #666;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-      }
-
-      .subtitle {
-        display: inline-block;
-        background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
-        color: #667eea;
-        padding: 0.4rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-top: 0.5rem;
-      }
-
-      .category-section {
-        margin-bottom: 2rem;
-      }
-
-      .category-label {
-        display: block;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        color: #333;
-        font-size: 0.95rem;
-      }
-
-      .category-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-      }
-
-      .category-card {
-        padding: 1rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-align: center;
-        background: white;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .category-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .category-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
-        border-color: #667eea;
-      }
-
-      .category-card:hover::before {
-        opacity: 1;
-      }
-
-      .category-card.active {
-        border-color: #667eea;
-        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-      }
-
-      .category-icon {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        position: relative;
-        z-index: 1;
-      }
-
-      .category-title {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #333;
-        line-height: 1.3;
-        position: relative;
-        z-index: 1;
-      }
-
-      .start-btn {
-        width: 100%;
-        padding: 1.2rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        border-radius: 14px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .start-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
-      }
-
-      .start-btn:active {
-        transform: translateY(-1px);
-      }
-
-      .mic-icon {
-        width: 24px;
-        height: 24px;
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-      }
-
-      .features {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid #e5e7eb;
-      }
-
-      .features-title {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #666;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-
-      .feature {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.5rem;
-        font-size: 0.85rem;
-        color: #666;
-        line-height: 1.4;
-      }
-
-      .feature-icon {
-        color: #667eea;
-        font-weight: bold;
-        font-size: 1.2rem;
-        flex-shrink: 0;
-      }
-
-      .trust-badge {
-        text-align: center;
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e5e7eb;
-      }
-
-      .trust-text {
-        font-size: 0.8rem;
-        color: #999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .shield-icon {
-        color: #667eea;
-      }
-
-      @media (max-width: 640px) {
-        .container {
-          padding: 2rem 1.5rem;
-        }
-
-        h1 {
-          font-size: 1.8rem;
-        }
-
-        .category-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .features-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="main.css" />
   </head>
+
   <body>
-    <div class="container">
-      <div class="header">
-        <div class="flag">🇵🇭</div>
-        <h1>AI Legal Buddy</h1>
-        <p class="tagline">Libreng legal na gabay sa Tagalog</p>
-        <span class="subtitle">🤖 Powered by AI</span>
-      </div>
+  
+    <%- include("partials/navbar") %>
+    <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200"
 
-      <div class="category-section">
-        <label class="category-label">Pumili ng kategorya:</label>
-        <div class="category-grid">
-          <div class="category-card active" data-value="TENANT">
-            <div class="category-icon">🏠</div>
-            <div class="category-title">Tenant / Renter Issues</div>
+
+    </div>
+    <div
+      class="w-full max-w-5xl p-6 bg-[hsl(var(--card))] rounded-[var(--radius)] shadow-lg border-2 border-[hsl(var(--border))] flex flex-col gap-6"
+    >
+
+      <!-- Category Section -->
+      <div class="flex-1">
+        <label class="block text-[hsl(var(--foreground))] font-semibold mb-3">
+          Pumili ng kategorya:
+        </label>
+        <div class="grid grid-cols-2 gap-3">
+          <div
+            class="category-card active cursor-pointer relative overflow-hidden rounded-[var(--radius)] border-2 border-[hsl(var(--border))] p-4 text-center bg-[hsl(var(--card))] hover:border-[hsl(var(--primary))] hover:shadow-lg transition transform hover:-translate-y-1"
+            data-value="TENANT"
+          >
+            <div class="text-2xl mb-2 relative z-10">🏠</div>
+            <div
+              class="text-sm font-semibold text-[hsl(var(--card-foreground))] relative z-10"
+            >
+              Tenant / Renter Issues
+            </div>
           </div>
-          <div class="category-card" data-value="WORKPLACE">
-            <div class="category-icon">💼</div>
-            <div class="category-title">Workplace / Labor Issues</div>
+          <div
+            class="category-card cursor-pointer relative overflow-hidden rounded-[var(--radius)] border-2 border-[hsl(var(--border))] p-4 text-center bg-[hsl(var(--card))] hover:border-[hsl(var(--primary))] hover:shadow-lg transition transform hover:-translate-y-1"
+            data-value="WORKPLACE"
+          >
+            <div class="text-2xl mb-2 relative z-10">💼</div>
+            <div
+              class="text-sm font-semibold text-[hsl(var(--card-foreground))] relative z-10"
+            >
+              Workplace / Labor Issues
+            </div>
           </div>
-          <div class="category-card" data-value="BARANGAY">
-            <div class="category-icon">🏘️</div>
-            <div class="category-title">Barangay / Community Issues</div>
+          <div
+            class="category-card cursor-pointer relative overflow-hidden rounded-[var(--radius)] border-2 border-[hsl(var(--border))] p-4 text-center bg-[hsl(var(--card))] hover:border-[hsl(var(--primary))] hover:shadow-lg transition transform hover:-translate-y-1"
+            data-value="BARANGAY"
+          >
+            <div class="text-2xl mb-2 relative z-10">🏘️</div>
+            <div
+              class="text-sm font-semibold text-[hsl(var(--card-foreground))] relative z-10"
+            >
+              Barangay / Community Issues
+            </div>
           </div>
-          <div class="category-card" data-value="GENERAL">
-            <div class="category-icon">⚖️</div>
-            <div class="category-title">General Legal Concern</div>
+          <div
+            class="category-card cursor-pointer relative overflow-hidden rounded-[var(--radius)] border-2 border-[hsl(var(--border))] p-4 text-center bg-[hsl(var(--card))] hover:border-[hsl(var(--primary))] hover:shadow-lg transition transform hover:-translate-y-1"
+            data-value="GENERAL"
+          >
+            <div class="text-2xl mb-2 relative z-10">⚖️</div>
+            <div
+              class="text-sm font-semibold text-[hsl(var(--card-foreground))] relative z-10"
+            >
+              General Legal Concern
+            </div>
           </div>
         </div>
-      </div>
+     </div>
 
-      <button class="start-btn" onclick="startSession()">
-        <svg
-          class="mic-icon"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      <!-- Start Button & Features -->
+      <div class="flex-1 flex flex-col justify-between gap-5">
+        <!-- Features -->
+        <div class="pt-6 border-t border-[hsl(var(--border))]">
+          <div
+            class="text-center text-[hsl(var(--muted-foreground))] font-semibold mb-4 text-sm"
+          >
+            ✨ Mga Features
+          </div>
+          <div class="grid grid-cols-2 gap-10 bg-[#F1F5F9] radius-10 p-10">
+            <div
+              class="flex items-start gap-2 text-[hsl(var(--muted-foreground))] text-sm"
+            >
+              <span class="text-[hsl(var(--primary))] font-bold text-lg">✓</span
+              >Voice chat sa Tagalog at English
+            </div>
+            <div
+              class="flex items-start gap-2 text-[hsl(var(--muted-foreground))] text-sm"
+            >
+              <span class="text-[hsl(var(--primary))] font-bold text-lg">✓</span
+              >Real-time legal guidance
+            </div>
+            <div
+              class="flex items-start gap-2 text-[hsl(var(--muted-foreground))] text-sm"
+            >
+              <span class="text-[hsl(var(--primary))] font-bold text-lg">✓</span
+              >Automatic report generation
+            </div>
+            <div
+              class="flex items-start gap-2 text-[hsl(var(--muted-foreground))] text-sm"
+            >
+              <span class="text-[hsl(var(--primary))] font-bold text-lg">✓</span
+              >Step-by-step action plan
+            </div>
+          </div>
+        </div>
+        <!-- Start Button -->
+        <button
+          class="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-[hsl(var(--hero-gradient-start))] to-[hsl(var(--hero-gradient-end))] text-[hsl(var(--primary-foreground))] rounded-[var(--radius)] py-4 text-lg font-semibold shadow-lg transition transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0"
+          onclick="startSession()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-          ></path>
-        </svg>
-        Magsimula ng Voice Call
-      </button>
+          <svg
+            class="w-6 h-6 animate-[pulse_2s_infinite_ease-in-out]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+            ></path>
+          </svg>
+          Magsimula ng Voice Call
+        </button>
 
-      <div class="features">
-        <div class="features-title">✨ Mga Features</div>
-        <div class="features-grid">
-          <div class="feature">
-            <span class="feature-icon">✓</span>
-            <span>Voice chat sa Tagalog at English</span>
-          </div>
-          <div class="feature">
-            <span class="feature-icon">✓</span>
-            <span>Real-time legal guidance</span>
-          </div>
-          <div class="feature">
-            <span class="feature-icon">✓</span>
-            <span>Automatic report generation</span>
-          </div>
-          <div class="feature">
-            <span class="feature-icon">✓</span>
-            <span>Step-by-step action plan</span>
-          </div>
+
+        <!-- Trust Badge -->
+        <div
+          class="pt-6 border-t border-[hsl(var(--border))] text-center flex items-center justify-center gap-2 text-[hsl(var(--muted-foreground))] text-xs"
+        >
+          <span class="text-[hsl(var(--primary))]">🔒</span>Secure &
+          Confidential
         </div>
       </div>
-
-      <div class="trust-badge">
-        <div class="trust-text">
-          <span class="shield-icon">🔒</span>
-          <span>Secure & Confidential</span>
-        </div>
-      </div>
+    </div>
     </div>
 
     <script>
       let selectedCategory = "TENANT";
 
-      // Category selection
-      document.querySelectorAll(".category-card").forEach((card) => {
-        card.addEventListener("click", function () {
-          document
-            .querySelectorAll(".category-card")
-            .forEach((c) => c.classList.remove("active"));
-          this.classList.add("active");
+      document.querySelectorAll(".category-card").forEach(card => {
+        card.addEventListener("click", function() {
+          document.querySelectorAll(".category-card").forEach(c => c.classList.remove("active", "border-[#667eea]", "bg-gradient-to-br", "from-[#667eea]", "to-[#764ba215]"));
+          this.classList.add("active", "border-[#667eea]", "bg-gradient-to-br", "from-[#667eea]/5", "to-[#764ba2]/5");
           selectedCategory = this.getAttribute("data-value");
         });
       });
@@ -434,12 +160,11 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ category: selectedCategory }),
           });
-
           const session = await response.json();
           window.location.href = `/call/${session.sessionId}`;
-        } catch (error) {
-          alert("Error starting session. Please try again.");
-          console.error(error);
+        } catch (err) {
+          alert("Error starting session");
+          console.error(err);
         }
       }
     </script>

@@ -1,95 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voice Legal Consultation</title>
-  <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.21.0.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body>
-
-  <body class="bg-gray-50 p-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voice Legal Consultation</title>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.21.0.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #1a1a2e;
+        color: white;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .call-container {
+        display: flex;
+        height: 100vh;
+      }
+      .main-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .status-dot {
+        width: 12px;
+        height: 12px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      .status-dot.listening {
+        background: #fbbf24;
+      }
+      .status-dot.speaking {
+        background: #3b82f6;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .category-badge {
+        background: #667eea;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+      .transcript-box {
+        flex: 1;
+        background: #16213e;
+        border-radius: 15px;
+        padding: 1.5rem;
+        overflow-y: auto;
+        margin-bottom: 2rem;
+      }
+      .transcript-item {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        animation: fadeIn 0.3s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .transcript-item.user {
+        background: #0f3460;
+        margin-left: 2rem;
+      }
+      .transcript-item.ai {
+        background: #1a4d2e;
+        margin-right: 2rem;
+      }
+      .speaker-label {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        font-size: 0.85rem;
+        opacity: 0.8;
+      }
+      .controls {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+      .control-btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .mic-btn {
+        background: #4ade80;
+        color: #1a1a2e;
+        position: relative;
+      }
+      .mic-btn.muted {
+        background: #ef4444;
+      }
+      .mic-btn.listening {
+        background: #fbbf24;
+        animation: micPulse 1s infinite;
+      }
+      .mic-btn.speaking {
+        background: #3b82f6;
+        cursor: not-allowed;
+      }
+      @keyframes micPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .end-btn {
+        background: #ef4444;
+        color: white;
+      }
+      .control-btn:hover:not(:disabled) {
+        transform: scale(1.05);
+      }
+      .control-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .sidebar {
+        width: 350px;
+        background: #16213e;
+        padding: 2rem;
+        overflow-y: auto;
+      }
+      .sidebar h3 {
+        margin-bottom: 1rem;
+        color: #667eea;
+      }
+      .steps-list {
+        list-style: none;
+      }
+      .step-item {
+        padding: 0.75rem;
+        background: #0f3460;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .step-item:hover {
+        background: #1a4d6f;
+      }
+      .step-item.completed {
+        opacity: 0.6;
+        text-decoration: line-through;
+      }
+      .step-checkbox {
+        margin-right: 0.5rem;
+      }
+      .voice-wave {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        margin: 1rem 0;
+      }
+      .voice-wave span {
+        width: 4px;
+        background: #667eea;
+        border-radius: 2px;
+        animation: wave 1s ease-in-out infinite;
+      }
+      .voice-wave span:nth-child(1) {
+        animation-delay: 0s;
+        height: 10px;
+      }
+      .voice-wave span:nth-child(2) {
+        animation-delay: 0.1s;
+        height: 20px;
+      }
+      .voice-wave span:nth-child(3) {
+        animation-delay: 0.2s;
+        height: 30px;
+      }
+      .voice-wave span:nth-child(4) {
+        animation-delay: 0.3s;
+        height: 20px;
+      }
+      .voice-wave span:nth-child(5) {
+        animation-delay: 0.4s;
+        height: 10px;
+      }
+      @keyframes wave {
+        0%,
+        100% {
+          height: 10px;
+        }
+        50% {
+          height: 30px;
+        }
+      }
+      .listening-indicator {
+        display: none;
+        text-align: center;
+        color: #fbbf24;
+        font-style: italic;
+        margin: 1rem 0;
+      }
+      .listening-indicator.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
     <div class="call-container">
       <div class="main-panel">
-        <div class="max-w-4xl mx-auto call-container">
-          <!-- Header -->
-          <div class="header">
-            <div class="mb-6">
-              <h1 class="text-3xl font-bold text-gray-800 mb-3">Live Call</h1>
-              <div class="flex items-center gap-3">
-                <div class="status">
-                  <span class="inline-flex items-center gap-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    <span class="w-2 h-2 bg-white rounded-full"></span>
-                    <div class="status-dot" id="statusDot"></div>
-                    <span id="callStatus">Connecting to Agora...</span>
-                  </span>
-                  <div class="category-badge text-gray-600 font-medium"><%= session.category %></div>
-                </div>
-              </div>
-            </div>
-            <!-- Call Status Card -->
-            <div class="bg-white rounded-lg shadow-sm p-12 mb-6 text-center">
-              <div class="flex flex-col items-center">
-                <div class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center mb-4">
-                  <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">AI Legal Assistant</h2>
-                <div class="transcript-box" id="transcript">
-                  <p style="opacity: 0.6; text-align: center" class="mb-3"> Initializing voice call... </p>
-                </div>
-                <div class="listening-indicator" id="listeningIndicator">
-                  <div class="voice-wave">
-                    <span></span><span></span><span></span><span></span><span></span>
-                  </div>
-                  <p>Listening to you...</p>
-                </div>
-                <div class="flex flex-row items-center controls">
-                  <button class="control-btn mic-btn muted bg-yellow-500 mr-5 hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors" id="micBtn" onclick="toggleMic()" disabled>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg> microphone off </button>
-                  <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors control-btn end-btn" onclick="endCall()">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg> End Call & Get Summary </button>
-                </div>
-              </div>
-            </div>
-            <!-- Live Transcript -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-              <h3 class="text-xl font-bold text-gray-800 mb-1">Live Transcript</h3>
-              <p class="text-gray-500 text-sm mb-6">Real-time conversation</p>
-              <div class="space-y-4">
-                  mewo diko magawa
-              </div>
-            </div>
-            <div class="sidebar">
-              <h3>📋 Action Steps</h3>
-              <ul class="steps-list" id="stepsList">
-                <li class="step-item">
-                  <input type="checkbox" class="step-checkbox" /> Connecting to voice service...
-                </li>
-              </ul>
-              <h3 style="margin-top: 2rem">📞 Important Contacts</h3>
-              <div id="contacts" style="font-size: 0.9rem; line-height: 1.6">
-                <p><strong>PAO:</strong> 929-9436</p>
-                <p><strong>DOLE:</strong> 1349</p>
-                <p><strong>Barangay:</strong> Local directory</p>
-              </div>
-            </div>
+        <div class="header">
+          <div class="status">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="callStatus">Connecting to Agora...</span>
           </div>
+          <div class="category-badge"><%= session.category %></div>
+        </div>
+
+        <div class="transcript-box" id="transcript">
+          <p style="opacity: 0.6; text-align: center">
+            Initializing voice call...
+          </p>
+        </div>
+
+        <div class="listening-indicator" id="listeningIndicator">
+          <div class="voice-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <p>Listening to you...</p>
+        </div>
+
+        <div class="controls">
+          <button
+            class="control-btn mic-btn muted"
+            id="micBtn"
+            onclick="toggleMic()"
+            disabled
+          >
+            🔇 Microphone Off
+          </button>
+          <button class="control-btn end-btn" onclick="endCall()">
+            📞 End Call & Generate Report
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <h3>📋 Action Steps</h3>
+        <ul class="steps-list" id="stepsList">
+          <li class="step-item">
+            <input type="checkbox" class="step-checkbox" />
+            Connecting to voice service...
+          </li>
+        </ul>
+
+        <h3 style="margin-top: 2rem">📞 Important Contacts</h3>
+        <div id="contacts" style="font-size: 0.9rem; line-height: 1.6">
+          <p><strong>PAO:</strong> 929-9436</p>
+          <p><strong>DOLE:</strong> 1349</p>
+          <p><strong>Barangay:</strong> Local directory</p>
         </div>
       </div>
     </div>
+
     <script>
       // ===== GLOBAL VARIABLES =====
       const sessionId = "<%= session.sessionId %>";
       const channelName = "legal-buddy-" + sessionId.substring(0, 8);
+
       let rtcClient = null;
       let localAudioTrack = null;
       let isMuted = true;
@@ -97,48 +311,64 @@
       let isRecognizing = false;
       let conversationHistory = [];
       let isProcessing = false;
+
       const micBtn = document.getElementById("micBtn");
       const statusDot = document.getElementById("statusDot");
       const callStatus = document.getElementById("callStatus");
       const listeningIndicator = document.getElementById("listeningIndicator");
+
       const synth = window.speechSynthesis;
+
       // ===== SPEECH RECOGNITION SETUP =====
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
       if (!SpeechRecognition) {
-        alert("⚠️ Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari.");
+        alert(
+          "⚠️ Your browser doesn't support speech recognition. Please use Chrome, Edge, or Safari."
+        );
       }
+
       const recognition = new SpeechRecognition();
       recognition.lang = "en-US";
       recognition.continuous = false;
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
+
       recognition.onstart = () => {
         console.log("🎤 Speech recognition STARTED");
         isRecognizing = true;
       };
+
       recognition.onresult = async (event) => {
         console.log("📝 Speech recognition got result");
         const transcript = event.results[0][0].transcript;
         const confidence = event.results[0][0].confidence;
         console.log(`✅ You said: "${transcript}" (confidence: ${confidence})`);
+
         stopListening();
         callStatus.textContent = "Processing your message...";
+
         addTranscript("USER", transcript);
         await saveTranscript("USER", transcript);
         await getAIResponseAndSpeak(transcript);
       };
+
       recognition.onerror = (event) => {
         console.error("❌ Speech recognition error:", event.error);
         let errorMessage = "";
+
         switch (event.error) {
           case "no-speech":
             errorMessage = "No speech detected. Please try again.";
             break;
           case "audio-capture":
-            errorMessage = "Microphone not accessible. Please check permissions.";
+            errorMessage =
+              "Microphone not accessible. Please check permissions.";
             break;
           case "not-allowed":
-            errorMessage = "Microphone access denied. Please allow microphone access in browser settings.";
+            errorMessage =
+              "Microphone access denied. Please allow microphone access in browser settings.";
             break;
           case "network":
             errorMessage = "Network error. Please check your connection.";
@@ -149,12 +379,15 @@
           default:
             errorMessage = `Speech recognition error: ${event.error}`;
         }
+
         if (errorMessage) {
           callStatus.textContent = errorMessage;
           alert(errorMessage);
         }
+
         resetMicState();
       };
+
       recognition.onend = () => {
         console.log("🔴 Speech recognition ENDED");
         isRecognizing = false;
@@ -162,64 +395,77 @@
           callStatus.textContent = "Ready to talk";
         }
       };
+
       // ===== AGORA INITIALIZATION =====
       async function initializeCall() {
         try {
           console.log("🚀 Initializing Agora call...");
+
           const tokenResponse = await fetch("/api/agora/token", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              channelName,
-              uid: 0
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ channelName, uid: 0 }),
           });
+
           const tokenData = await tokenResponse.json();
           console.log("✅ Got Agora token");
-          rtcClient = AgoraRTC.createClient({
-            mode: "rtc",
-            codec: "vp8"
-          });
-          await rtcClient.join(tokenData.appId, channelName, tokenData.rtcToken, 0);
+
+          rtcClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+
+          await rtcClient.join(
+            tokenData.appId,
+            channelName,
+            tokenData.rtcToken,
+            0
+          );
           console.log("✅ Joined Agora channel");
+
           localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
           await localAudioTrack.setMuted(true);
           await rtcClient.publish([localAudioTrack]);
+
           console.log("✅ Published audio track");
+
           callStatus.textContent = "Connected - Ready to talk";
           micBtn.disabled = false;
           statusDot.classList.add("listening");
+
           setTimeout(() => {
             const greeting = `Hello! I'm your AI Legal Buddy for <%= session.category %> issues. Please tell me what happened.`;
             addTranscript("AI", greeting);
             speak(greeting);
           }, 1000);
+
           console.log("✅ Agora call initialized successfully");
         } catch (error) {
           console.error("❌ Agora initialization error:", error);
           callStatus.textContent = "Connection failed - Check console";
-          alert("Failed to connect to voice service. Please check your microphone permissions and try again.");
+          alert(
+            "Failed to connect to voice service. Please check your microphone permissions and try again."
+          );
         }
       }
+
       // ===== MIC CONTROLS =====
       async function toggleMic() {
         if (isAISpeaking) {
           console.log("⚠️ Cannot toggle mic - AI is speaking");
           return;
         }
+
         if (isMuted) {
           try {
             await localAudioTrack.setMuted(false);
             isMuted = false;
             isRecognizing = true;
+
             micBtn.classList.remove("muted");
             micBtn.classList.add("listening");
             micBtn.textContent = "🎤 Listening...";
             statusDot.classList.add("listening");
             callStatus.textContent = "Listening to you - Speak now!";
             listeningIndicator.classList.add("show");
+
             recognition.start();
             console.log("✅ Speech recognition started");
           } catch (error) {
@@ -237,10 +483,12 @@
           recognition.stop();
           isRecognizing = false;
         }
+
         if (!isMuted) {
           localAudioTrack.setMuted(true);
           isMuted = true;
         }
+
         micBtn.classList.add("muted");
         micBtn.classList.remove("listening");
         micBtn.textContent = "🔇 Microphone Off";
@@ -253,9 +501,11 @@
         isRecognizing = false;
         isMuted = true;
         isAISpeaking = false;
+
         if (localAudioTrack) {
           localAudioTrack.setMuted(true);
         }
+
         micBtn.classList.add("muted");
         micBtn.classList.remove("listening", "speaking");
         micBtn.disabled = false;
@@ -264,6 +514,7 @@
         callStatus.textContent = "Ready to talk";
         listeningIndicator.classList.remove("show");
       }
+
       // ===== AI RESPONSE =====
       async function getAIResponseAndSpeak(userMessage) {
         isAISpeaking = true;
@@ -273,31 +524,34 @@
         statusDot.classList.remove("listening");
         statusDot.classList.add("speaking");
         callStatus.textContent = "AI is responding...";
+
         try {
           const context = `Legal Category: <%= session.category %>. Conversation: ${conversationHistory
             .slice(-5)
             .map((t) => `${t.speaker}: ${t.text}`)
             .join(" | ")}`;
           console.log("📤 Sending to AI:", userMessage);
+
           const response = await fetch("/api/ai/chat", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              message: userMessage,
-              context
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage, context }),
           });
+
           if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
           }
+
           const data = await response.json();
-          const aiMessage = data.response || "Sorry, I did not understand. Can you please repeat?";
+          const aiMessage =
+            data.response ||
+            "Sorry, I did not understand. Can you please repeat?";
           console.log("📥 AI Response:", aiMessage);
+
           addTranscript("AI", aiMessage);
           await saveTranscript("AI", aiMessage);
           speak(aiMessage);
+
           if (conversationHistory.length >= 6 && !isProcessing) {
             processWithAI();
           }
@@ -308,6 +562,7 @@
           speak(errorMsg);
         }
       }
+
       // ===== TEXT-TO-SPEECH =====
       function speak(text) {
         synth.cancel();
@@ -315,18 +570,23 @@
         utterance.lang = "en-US";
         utterance.rate = 1.0;
         utterance.pitch = 1.0;
+
         const voices = synth.getVoices();
-        const preferredVoice = voices.find(
-          (v) => v.lang.startsWith("en") && v.name.includes("Female")) || voices[0];
+        const preferredVoice =
+          voices.find(
+            (v) => v.lang.startsWith("en") && v.name.includes("Female")
+          ) || voices[0];
         if (preferredVoice) {
           utterance.voice = preferredVoice;
         }
+
         utterance.onstart = () => {
           console.log("🔊 AI started speaking");
           isAISpeaking = true;
           micBtn.textContent = "🔊 AI is speaking...";
           callStatus.textContent = "AI is speaking...";
         };
+
         utterance.onend = () => {
           console.log("✅ AI finished speaking");
           isAISpeaking = false;
@@ -337,6 +597,7 @@
           statusDot.classList.add("listening");
           callStatus.textContent = "Your turn - Click mic to speak";
         };
+
         utterance.onerror = (event) => {
           console.error("❌ Speech synthesis error:", event);
           isAISpeaking = false;
@@ -344,15 +605,18 @@
           micBtn.classList.remove("speaking");
           callStatus.textContent = "Speech error - Ready to continue";
         };
+
         console.log("🗣️ Speaking:", text);
         synth.speak(utterance);
       }
+
       // ===== TRANSCRIPT FUNCTIONS =====
       function addTranscript(speaker, text) {
         const transcriptBox = document.getElementById("transcript");
         if (transcriptBox.querySelector('p[style*="opacity: 0.6"]')) {
           transcriptBox.innerHTML = "";
         }
+
         const item = document.createElement("div");
         item.className = `transcript-item ${speaker.toLowerCase()}`;
         item.innerHTML = `
@@ -361,61 +625,62 @@
           }</div>
           <div>${text}</div>
         `;
+
         transcriptBox.appendChild(item);
         transcriptBox.scrollTop = transcriptBox.scrollHeight;
-        conversationHistory.push({
-          speaker,
-          text
-        });
+        conversationHistory.push({ speaker, text });
       }
+
       async function saveTranscript(speaker, text) {
         try {
           await fetch("/api/transcript/save", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              sessionId,
-              speaker,
-              text
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId, speaker, text }),
           });
         } catch (error) {
           console.error("Failed to save transcript:", error);
         }
       }
+
       // ===== SIDEBAR UPDATES =====
       async function processWithAI() {
         isProcessing = true;
         const stepsList = document.getElementById("stepsList");
-        stepsList.innerHTML = '<li class="step-item">Analyzing conversation...</li>';
-        const fullTranscript = conversationHistory.map((t) => `${t.speaker}: ${t.text}`).join("\n");
+        stepsList.innerHTML =
+          '<li class="step-item">Analyzing conversation...</li>';
+
+        const fullTranscript = conversationHistory
+          .map((t) => `${t.speaker}: ${t.text}`)
+          .join("\n");
+
         try {
           const response = await fetch("/api/ai/process", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               sessionId,
               fullTranscript,
               category: "<%= session.category %>",
             }),
           });
+
           const summary = await response.json();
           updateActionSteps(summary);
           updateContacts(summary);
         } catch (error) {
           console.error("AI processing error:", error);
-          stepsList.innerHTML = '<li class="step-item">Continue conversation for guidance...</li>';
+          stepsList.innerHTML =
+            '<li class="step-item">Continue conversation for guidance...</li>';
         }
       }
 
       function updateActionSteps(summary) {
         const stepsList = document.getElementById("stepsList");
         stepsList.innerHTML = "";
-        const steps = summary.recommendedSteps || ["Continue talking to get personalized steps", ];
+        const steps = summary.recommendedSteps || [
+          "Continue talking to get personalized steps",
+        ];
         steps.forEach((step) => {
           const li = document.createElement("li");
           li.className = "step-item";
@@ -437,13 +702,16 @@
         }
         contactsDiv.innerHTML = html;
       }
+
       // ===== END CALL WITH SUMMARIZATION =====
       async function endCall() {
         console.log("📞 Ending call and generating comprehensive summary...");
+
         // Disable button to prevent multiple clicks
         const endBtn = event.target;
         endBtn.disabled = true;
         endBtn.textContent = "⏳ Processing...";
+
         // Stop all audio/recognition
         synth.cancel();
         if (isRecognizing) {
@@ -451,50 +719,56 @@
         }
         if (localAudioTrack) localAudioTrack.close();
         if (rtcClient) await rtcClient.leave();
+
         // Show loading state
-        callStatus.textContent = "Generating your comprehensive consultation summary...";
+        callStatus.textContent =
+          "Generating your comprehensive consultation summary...";
         micBtn.disabled = true;
         micBtn.textContent = "⏳ Processing...";
+
         try {
           // First, end the session
           await fetch("/api/session/end", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              sessionId
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId }),
           });
+
           // Then generate final comprehensive summary and WAIT for it
           console.log("📋 Calling final summarization endpoint...");
           callStatus.textContent = "AI is analyzing your conversation...";
+
           const summaryResponse = await fetch("/api/session/summarize", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              sessionId
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessionId }),
           });
+
           if (!summaryResponse.ok) {
             const errorText = await summaryResponse.text();
             console.error("Summarization error response:", errorText);
             throw new Error(`Summarization failed: ${summaryResponse.status}`);
           }
+
           const summaryData = await summaryResponse.json();
           console.log("✅ Comprehensive summary generated:", summaryData);
+
           callStatus.textContent = "Summary complete! Redirecting...";
+
           // Small delay to show success message
           await new Promise((resolve) => setTimeout(resolve, 1000));
+
           // Now redirect to summary page
           window.location.href = `/summary/${sessionId}`;
         } catch (error) {
           console.error("❌ Summarization error:", error);
           callStatus.textContent = "Error generating summary";
+
           // Show error but still allow redirect
-          const shouldContinue = confirm("Failed to generate comprehensive summary. Would you like to see what was captured anyway?");
+          const shouldContinue = confirm(
+            "Failed to generate comprehensive summary. Would you like to see what was captured anyway?"
+          );
+
           if (shouldContinue) {
             window.location.href = `/summary/${sessionId}`;
           } else {
@@ -507,17 +781,18 @@
           }
         }
       }
+
       // ===== LOAD VOICES =====
       if (synth.onvoiceschanged !== undefined) {
         synth.onvoiceschanged = () => {
           console.log("Voices loaded:", synth.getVoices().length);
         };
       }
+
       // ===== START =====
       window.addEventListener("load", () => {
         initializeCall();
       });
     </script>
   </body>
-
 </html>

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css">
   </head>
 
-  <body class="min-h-screen bg-background">
+  <body class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
     <!-- Navbar -->
     <%- include("partials/navbar") %>
 
     <!-- CENTER WRAPPER -->
-    <div class="mx-auto max-w-6xl px-4">
+    <div class="mx-auto ">
       <!-- Hero Section -->
       <section class="relative overflow-hidden">
         <div
-          class="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-10"
+          class="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] opacity-10"
         ></div>
 
         <div class="relative py-24 sm:py-32">
           <div class="mx-auto max-w-3xl text-center">
             <div
-              class="mb-8 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground"
+              class="mb-8 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--secondary))] px-4 py-2 text-sm font-medium text-[hsl(var(--secondary-foreground))]"
             >
               <i data-lucide="scale" class="h-4 w-4"></i>
               <span>AI-Powered Legal Assistance</span>
@@ -31,13 +33,13 @@
             >
               AI Filipino
               <span
-                class="bg-gradient-to-r from-primary to-accent bg-clip-text"
+                class="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent"
               >
                 Legal Buddy</span
               >
             </h1>
 
-            <p class="mb-10 text-lg text-muted-foreground sm:text-xl">
+            <p class="mb-10 text-lg text-[hsl(var(--muted-foreground))] sm:text-xl">
               Get instant legal help through voice-assisted AI. Speak your
               problem, understand your rights, and take action.
             </p>
@@ -45,7 +47,7 @@
             <div class="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <a
                 href="/call"
-                class="btn btn-primary text-base px-6 py-3 flex items-center justify-center"
+                class="btn px-6 py-3 flex items-center justify-center bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] text-base"
               >
                 Start Call Now
                 <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
@@ -56,10 +58,10 @@
       </section>
 
       <!-- Categories Section -->
-      <section class="border-t bg-muted/30 py-20">
+      <section class="border-t bg-[#F1F5F9] py-20">
         <div class="text-center mb-12">
           <h2 class="mb-4 text-3xl font-bold">Legal Categories We Cover</h2>
-          <p class="text-lg text-muted-foreground">
+          <p class="text-lg text-[hsl(var(--muted-foreground))]">
             Select the category that best matches your situation
           </p>
         </div>
@@ -67,42 +69,42 @@
         <div class="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <!-- Tenant Issues -->
           <div
-            class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-card border rounded-xl p-6"
+            class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-[hsl(var(--card))] border rounded-xl p-6"
             onclick="window.location='/call'"
           >
-            <div class="mb-4 w-fit rounded-lg bg-secondary p-3 text-primary">
+            <div class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--primary))]">
               <i data-lucide="home" class="h-8 w-8"></i>
             </div>
             <h3 class="text-xl font-semibold">Tenant Issues</h3>
-            <p class="text-base text-muted-foreground">
+            <p class="text-base text-[hsl(var(--muted-foreground))]">
               Rental disputes, eviction, landlord problems
             </p>
           </div>
 
           <!-- Workplace Issues -->
           <div
-            class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-card border rounded-xl p-6"
+            class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-[hsl(var(--card))] border rounded-xl p-6"
             onclick="window.location='/call'"
           >
-            <div class="mb-4 w-fit rounded-lg bg-secondary p-3 text-accent">
+            <div class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--accent))]">
               <i data-lucide="briefcase" class="h-8 w-8"></i>
             </div>
             <h3 class="text-xl font-semibold">Workplace Issues</h3>
-            <p class="text-base text-muted-foreground">
+            <p class="text-base text-[hsl(var(--muted-foreground))]">
               Employment rights, wage disputes, workplace harassment
             </p>
           </div>
 
           <!-- Barangay Issues -->
           <div
-            class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-card border rounded-xl p-6"
+            class="cursor-pointer transition-all hover:shadow-lg hover:scale-105 bg-[hsl(var(--card))] border rounded-xl p-6"
             onclick="window.location='/call'"
           >
-            <div class="mb-4 w-fit rounded-lg bg-secondary p-3 text-success">
+            <div class="mb-4 w-fit rounded-lg bg-[hsl(var(--secondary))] p-3 text-[hsl(var(--success))]">
               <i data-lucide="users" class="h-8 w-8"></i>
             </div>
             <h3 class="text-xl font-semibold">Barangay Issues</h3>
-            <p class="text-base text-muted-foreground">
+            <p class="text-base text-[hsl(var(--muted-foreground))]">
               Community disputes, local conflicts, mediation
             </p>
           </div>
@@ -113,7 +115,7 @@
       <section class="py-20">
         <div class="mb-12 text-center">
           <h2 class="mb-4 text-3xl font-bold">How It Works</h2>
-          <p class="text-lg text-muted-foreground">
+          <p class="text-lg text-[hsl(var(--muted-foreground))]">
             Three simple steps to get legal assistance
           </p>
         </div>
@@ -123,13 +125,13 @@
           <div class="relative text-center">
             <div class="mb-6 flex justify-center">
               <div
-                class="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground"
+                class="flex h-16 w-16 items-center justify-center rounded-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
               >
                 <i data-lucide="message-square" class="h-8 w-8"></i>
               </div>
             </div>
             <h3 class="mb-3 text-xl font-semibold">Start Call</h3>
-            <p class="text-muted-foreground">
+            <p class="text-[hsl(var(--muted-foreground))]">
               Choose your legal category and begin voice call
             </p>
           </div>
@@ -138,13 +140,13 @@
           <div class="relative text-center">
             <div class="mb-6 flex justify-center">
               <div
-                class="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground"
+                class="flex h-16 w-16 items-center justify-center rounded-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
               >
                 <i data-lucide="scale" class="h-8 w-8"></i>
               </div>
             </div>
             <h3 class="mb-3 text-xl font-semibold">Speak Your Problem</h3>
-            <p class="text-muted-foreground">
+            <p class="text-[hsl(var(--muted-foreground))]">
               Talk naturally with our AI legal assistant
             </p>
           </div>
@@ -153,13 +155,13 @@
           <div class="relative text-center">
             <div class="mb-6 flex justify-center">
               <div
-                class="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground"
+                class="flex h-16 w-16 items-center justify-center rounded-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
               >
                 <i data-lucide="file-text" class="h-8 w-8"></i>
               </div>
             </div>
             <h3 class="mb-3 text-xl font-semibold">Get Action Plan</h3>
-            <p class="text-muted-foreground">
+            <p class="text-[hsl(var(--muted-foreground))]">
               Receive summary, relevant laws, and next steps
             </p>
           </div>
@@ -170,7 +172,7 @@
 
     <!-- Footer -->
     <footer class="border-t py-12">
-      <div class="container text-center text-sm text-muted-foreground">
+      <div class="container text-center text-sm text-[hsl(var(--muted-foreground))]">
         <p>
           © 2025 AI Filipino Legal Buddy. Empowering Filipinos with accessible
           legal information.
