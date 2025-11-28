@@ -1336,5 +1336,53 @@
     "speaker": "AI",
     "text": "Sir, what's the issue with your landlord? Can you elaborate?",
     "timestamp": 1764256020934
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "USER",
+    "text": "hello hello hello",
+    "timestamp": 1764259459766
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "AI",
+    "text": "Ano po ang nangyari? May problema ba sa inyong rental?",
+    "timestamp": 1764259460328
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "USER",
+    "text": "yes yes or awesome",
+    "timestamp": 1764259572617
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "AI",
+    "text": "Ano ang nangyari sa inyong kontrata?",
+    "timestamp": 1764259573019
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "USER",
+    "text": "yes",
+    "timestamp": 1764259611341
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "AI",
+    "text": "Let's discuss your tenant issue. What seems to be the problem with your rental agreement? Can you elaborate?",
+    "timestamp": 1764259611842
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "USER",
+    "text": "pinatalsik ako",
+    "timestamp": 1764259627103
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "speaker": "AI",
+    "text": "You were evicted. Can you tell me the reason given by your landlord?",
+    "timestamp": 1764259627514
   }
 ]

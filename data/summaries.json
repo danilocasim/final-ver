@@ -367,5 +367,36 @@
     "nextAction": "Contact the Public Attorney's Office (PAO) at (02) 8426-2075 to seek legal advice and guidance on the issue with the landlord",
     "totalTranscripts": 34,
     "createdAt": 1764256037591
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "situation": "The user was evicted from their rental property, with the reason for eviction not specified.",
+    "relevantLaws": [
+      "The Rent Control Act of 2009 (Republic Act No. 9653) which regulates the rent of certain residential units",
+      "The Civil Code of the Philippines (Republic Act No. 386) which governs the rights and obligations of landlords and tenants",
+      "The Urban Development and Housing Act of 1992 (Republic Act No. 7279) which aims to address the housing needs of the underprivileged and homeless"
+    ],
+    "recommendedSteps": [
+      1,
+      "Document all relevant communication and agreements with the landlord",
+      "Take photos and videos of the property before leaving",
+      "Secure a new place to stay",
+      "Consider seeking assistance from the Public Attorney's Office (PAO) or other legal aid organizations"
+    ],
+    "watchOutFor": [
+      "Any signs of harassment or intimidation from the landlord",
+      "Deadline for filing a case against the landlord, if applicable",
+      "Possibility of the landlord disposing of the user's belongings without permission"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Seek assistance from the Public Attorney's Office (PAO) or other legal aid organizations to assess the situation and determine the best course of action",
+    "totalTranscripts": 8,
+    "createdAt": 1764259665799
   }
 ]

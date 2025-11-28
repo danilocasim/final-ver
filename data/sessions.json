@@ -737,5 +737,12 @@
     "status": "COMPLETED",
     "startTime": 1764253479421,
     "endTime": 1764256035969
+  },
+  {
+    "sessionId": "2669617f-e0c9-43d9-a67b-6a5d4d1fe7ff",
+    "category": "TENANT",
+    "status": "COMPLETED",
+    "startTime": 1764259443168,
+    "endTime": 1764259664407
   }
 ]

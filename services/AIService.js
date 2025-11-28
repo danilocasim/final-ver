@@ -106,12 +106,17 @@ FORMAT THE OUTPUT AS A JSON OBJECT:
   "nextAction": ""
 }
 
-Your tone must be:  
-- Professional  
-- Calm  
-- Lawyer-like  
-- Supportive but factual  
-- Never give false certainty
+LANGUAGE INSTRUCTIONS:
+- Always respond in fluent, natural English.
+- You must fully understand Tagalog, Filipino slang, and Taglish.
+- But your output must ALWAYS be in English.
+
+TONE REQUIREMENTS:
+- Professional
+- Calm and clear
+- Lawyer-like and factual
+- Supportive but not overly emotional
+- Avoid false certainty
 
 Respond ONLY with valid JSON, no markdown or explanation.`;
 
@@ -210,11 +215,52 @@ Respond ONLY with valid JSON, no markdown or explanation.`;
     throw new Error(`All AI providers failed`);
   }
 
+  _detectCategoryMismatch(userMessage, selectedCategory) {
+    // Very simple keyword-based detection
+    const categoryKeywords = {
+      labor: [
+        "work",
+        "salary",
+        "employer",
+        "contract",
+        "overtime",
+        "termination",
+        "resign",
+      ],
+      tenancy: ["landlord", "rent", "tenant", "apartment", "eviction", "lease"],
+      family: ["marriage", "child", "support", "custody"],
+      crime: ["police", "theft", "assault", "harassment"],
+    };
+
+    selectedCategory = selectedCategory.toLowerCase();
+
+    // Scan text for keywords of OTHER categories
+    for (const [category, keywords] of Object.entries(categoryKeywords)) {
+      if (category === selectedCategory) continue;
+      if (keywords.some((k) => userMessage.toLowerCase().includes(k))) {
+        return category; // mismatch detected → suggested category
+      }
+    }
+
+    return null; // no mismatch
+  }
+
   async generateResponse(userMessage, context) {
     const providers = this.getAvailableProviders();
 
     if (providers.length === 0) {
       return "Pasensya na, walang available na AI service. Please check your API keys.";
+    }
+    // 🔍 NEW: Detect category mismatch
+    const suggestedCategory = this._detectCategoryMismatch(
+      userMessage,
+      context?.category || ""
+    );
+
+    if (suggestedCategory) {
+      return `It looks like your issue falls under ${
+        suggestedCategory.charAt(0).toUpperCase() + suggestedCategory.slice(1)
+      } law rather than your selected category. Would you like me to open a new conversation for that topic?`;
     }
 
     for (const provider of providers) {
@@ -294,17 +340,22 @@ Respond ONLY with valid JSON.`;
   }
 
   async _generateResponseWithProvider(provider, userMessage, context) {
-    const prompt = `You are a Filipino legal advisor in a VOICE CONVERSATION.
+    const prompt = `You are a Filipino legal advisor assisting the user in a voice conversation.
 
-Respond in 2–3 short sentences only (maximum 30 words total).
-Use fluent Filipino with natural Taglish when appropriate.
-Be conversational and professional like a lawyer on the phone.
-Ask a brief follow-up question to clarify the legal situation.
+LANGUAGE RULES:
+- Always respond in fluent, natural English.
+- You must fully understand Tagalog and Taglish, but your answers must remain in English.
+- Keep responses clear, concise, and conversational, like a lawyer speaking on the phone.
+
+RESPONSE RULES:
+- Reply in only 2–3 short sentences (maximum 30 words total).
+- Maintain a professional, calm tone.
+- Provide helpful guidance and ask one brief follow-up question for clarification.
 
 Context: ${context}
 User: ${userMessage}
 
-Respond naturally:`;
+Respond naturally, in English only:`;
 
     if (provider === "groq") {
       const response = await this.providers.groq.client.chat.completions.create(

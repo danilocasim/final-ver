@@ -2,9 +2,9 @@
   "name": "ai-filipino-legal-buddy",
   "version": "1.0.0",
   "description": "Voice-based AI legal advice system for Filipino users with multi-provider fallback",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node --watch app.js"
   },
   "keywords": [
     "legal",
