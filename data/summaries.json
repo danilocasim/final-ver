@@ -398,5 +398,54 @@
     "nextAction": "Seek assistance from the Public Attorney's Office (PAO) or other legal aid organizations to assess the situation and determine the best course of action",
     "totalTranscripts": 8,
     "createdAt": 1764259665799
+  },
+  {
+    "sessionId": "4dd1a5eb-635f-4797-8045-3a92a9d7d50b",
+    "situation": "The user conducted a mic test but did not share any specific concern or situation related to barangay matters.",
+    "relevantLaws": [],
+    "recommendedSteps": [
+      "Clearly state the concern or issue to receive proper assistance",
+      "Visit the local barangay hall for guidance on community-related matters",
+      "Contact relevant hotlines for immediate concerns or emergencies"
+    ],
+    "watchOutFor": [
+      "Delays in reporting incidents or concerns to the proper authorities",
+      "Failure to document or record relevant information or evidence"
+    ],
+    "contacts": {
+      "PNP": "911 (emergency), 8888 (non-emergency reporting)",
+      "Barangay": "Local barangay hall hotline",
+      "PAO (Public Attorney's Office)": "(02) 8426-2075 / nearest district office",
+      "DSWD": "1343 Actionline",
+      "NBI": "(02) 8523-8231"
+    },
+    "nextAction": "Clearly state the specific concern or issue to receive proper assistance and guidance",
+    "totalTranscripts": 2,
+    "createdAt": 1764291181770
+  },
+  {
+    "sessionId": "25c06755-d334-4ffc-a9d4-c710f3aaf188",
+    "situation": "Alleged homicide with intent to escape liability",
+    "relevantLaws": [
+      "Article 248 of the Revised Penal Code (Murder)",
+      "Article 249 of the Revised Penal Code (Homicide)",
+      "Article 253 of the Revised Penal Code (Self-defense)"
+    ],
+    "recommendedSteps": [
+      "Seek legal counsel immediately",
+      "Cooperate with authorities and provide a full account of the incident",
+      "Prepare for potential court proceedings and gather evidence"
+    ],
+    "contacts": {
+      "National Bureau of Investigation (NBI)": "(+632) 8524-7371",
+      "Philippine National Police (PNP) Hotline": "(+632) 8722-0650",
+      "Department of Justice (DOJ)": "(+632) 8527-6771"
+    },
+    "nextAction": "Seek legal counsel and cooperate with authorities to determine the best course of action",
+    "totalDuration": 0,
+    "aiTalkTime": 0,
+    "humanTalkTime": 0,
+    "conversationTurns": 0,
+    "createdAt": 1764292489184
   }
 ]

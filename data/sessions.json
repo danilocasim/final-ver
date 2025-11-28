@@ -848,5 +848,37 @@
     "status": "COMPLETED",
     "startTime": 1764259443168,
     "endTime": 1764259664407
+  },
+  {
+    "sessionId": "4dd1a5eb-635f-4797-8045-3a92a9d7d50b",
+    "category": "BARANGAY",
+    "status": "COMPLETED",
+    "startTime": 1764291150284,
+    "endTime": 1764291180805
+  },
+  {
+    "sessionId": "d69c84e4-7974-43ad-9de9-46d376e2fa90",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764291438853
+  },
+  {
+    "sessionId": "e3712a1b-a1ff-49b2-a411-c609e674e8f4",
+    "category": "TENANT",
+    "status": "ACTIVE",
+    "startTime": 1764291516268
+  },
+  {
+    "sessionId": "ed5097cb-79cf-4e84-bcf9-040f5d5ee7e7",
+    "category": "WORKPLACE",
+    "status": "COMPLETED",
+    "startTime": 1764291558658,
+    "endTime": 1764291559436
+  },
+  {
+    "sessionId": "25c06755-d334-4ffc-a9d4-c710f3aaf188",
+    "category": "GENERAL",
+    "status": "ACTIVE",
+    "startTime": 1764291567967
   }
 ]

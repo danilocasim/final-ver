@@ -191,17 +191,17 @@
 
           <!-- Sidebar -->
           <div
-            class="w-full lg:w-1/4 bg-white rounded-xl shadow-sm p-6 mt-6 lg:mt-0"
+            class="sidebar w-full lg:w-1/4 bg-white rounded-xl shadow-sm p-6 mt-6 lg:mt-0"
           >
             <h3 class="text-lg font-bold mb-3">📋 Action Steps</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2">
-                <input type="checkbox" class="w-4 h-4" /> Connecting to voice
-                service...
+            <ul class="steps-list space-y-2" id="stepsList">
+              <li class="step-item flex items-center gap-2">
+                <input class="step-checkbox" type="checkbox" class="w-4 h-4" />
+                Connecting to voice service...
               </li>
             </ul>
             <h3 class="text-lg font-bold mt-6 mb-2">📞 Important Contacts</h3>
-            <div class="text-sm space-y-1">
+            <div id="contacts" class="text-sm space-y-1">
               <p><strong>PAO:</strong> 929-9436</p>
               <p><strong>DOLE:</strong> 1349</p>
               <p><strong>Barangay:</strong> Local directory</p>
